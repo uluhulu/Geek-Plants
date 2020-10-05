@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
 
+import '../../pathStrings.dart';
+import '../../strings.dart';
+
 class AuthScreen extends StatefulWidget {
   @override
   _AuthScreenState createState() => _AuthScreenState();
@@ -10,15 +13,12 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // navigationBar: CupertinoNavigationBar(
-      //   middle: Text('ЛБ1, Сысоева Ульяна'),
-      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/images/geek-plants-banner.png'),
+            child: Image.asset(geekPlantsBannerPath),
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -27,12 +27,8 @@ class _AuthScreenState extends State<AuthScreen> {
               right: 42.0,
             ),
             child: TextField(
-              // decoration: BoxDecoration(
-              //   border:
-              // ) ,
-              decoration: InputDecoration(hintText: 'E-mail'),
+              decoration: InputDecoration(hintText: hintEmail),
               obscureText: true,
-              // placeholder: "E-mail",
             ),
           ),
           Padding(
@@ -43,8 +39,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             child: TextField(
               obscureText: true,
-              decoration: InputDecoration(hintText: 'Пароль'),
-              // placeholder: "Пароль",
+              decoration: InputDecoration(hintText: hintPassword),
             ),
           ),
           Padding(
@@ -54,7 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
               child: FlatButton(
                 onPressed: () {},
                 child: Text(
-                  'Забыли пароль?',
+                  forgetPassword,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Colors.grey,
@@ -66,7 +61,7 @@ class _AuthScreenState extends State<AuthScreen> {
           _buildLoginButton(),
           FlatButton(
             child: Text(
-              'Зарегистрироваться',
+              register,
               style: TextStyle(
                 color: Colors.green,
               ),
@@ -78,10 +73,10 @@ class _AuthScreenState extends State<AuthScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _signInButton("assets/icons/apple.png"),
-              _signInButton("assets/icons/vk.png"),
-              _signInButton("assets/icons/google.png"),
-              _signInButton("assets/icons/facebook.png"),
+              _signInButton(apple),
+              _signInButton(vk),
+              _signInButton(google),
+              _signInButton(facebook),
             ],
 
           )
