@@ -103,7 +103,7 @@ class _AuthScreenState extends State<AuthScreen> {
       children: [
         BlackButton(
           onTap: () {},
-          title: 'Войти',
+          title: signIn,
         ),
       ],
     );
