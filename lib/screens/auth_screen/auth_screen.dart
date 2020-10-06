@@ -13,6 +13,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -28,7 +29,6 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             child: TextField(
               decoration: InputDecoration(hintText: hintEmail),
-              obscureText: true,
             ),
           ),
           Padding(
@@ -70,15 +70,18 @@ class _AuthScreenState extends State<AuthScreen> {
               /** */
             },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _signInButton(apple),
-              _signInButton(vk),
-              _signInButton(google),
-              _signInButton(facebook),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top:33),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _signInButton(apple),
+                _signInButton(vk),
+                _signInButton(google),
+                _signInButton(facebook),
+              ],
 
+            ),
           )
         ],
       ),
@@ -86,15 +89,11 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _signInButton(String iconPath) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 44.0, top: 33.0),
-      child: IconButton(
-        padding: EdgeInsets.all(0.0),
-        iconSize: 51.0,
-        color: Colors.black,
-        onPressed: () {  },
-        icon: Image.asset(iconPath),
-      ),
+    return IconButton(
+      iconSize: 57.0,
+      color: Colors.black,
+      onPressed: () {  },
+      icon: Image.asset(iconPath),
     );
   }
 
