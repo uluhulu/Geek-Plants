@@ -9,7 +9,7 @@ class SearchingScreen extends StatefulWidget {
 }
 
 class _SearchingScreenState extends State<SearchingScreen> {
-  List plantList = [
+  List<Plant> plantList = [
     Plant(
       name: "Абутилон (Катаника)",
       latName: "лат.Abutilon",
@@ -41,11 +41,13 @@ class _SearchingScreenState extends State<SearchingScreen> {
       photoPath: abutilonPath,
     ),
     Plant(
-      name: "Бальзамин",
+      name: "очко",
       latName: "лат.Impatience",
       photoPath: abutilonPath,
     ),
   ];
+
+  var firstWord = "";
 
   List categories = [
     "Все",
@@ -136,28 +138,45 @@ class _SearchingScreenState extends State<SearchingScreen> {
               ),
             ),
           ),
-          // centerTitle: true,
-          // title: Text("Добавьте свои растения!",
-          //     style: TextStyle(
-          //       color: Colors.white,
-          //       fontSize: 16.0,
-          // )
-          SliverGrid.count(
-            crossAxisCount: 2,
-            childAspectRatio: 164 / 224,
-            children: List.generate(
-              plantList.length,
-              (index) {
-                return buildPlantCard(plantList[index]);
-              },
+          SliverList(
+            delegate: SliverChildListDelegate(
+              generateGroupedList(),
             ),
           ),
         ],
-        // headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        //   return <Widget>
-        // },
       ),
     );
+  }
+
+  List<Widget> generateGroupedList() {
+    var groupedList = <Widget>[];
+    var tmpGroupWord = "";
+    for (var i = 0; i < plantList.length; i++) {
+      var plant = plantList[i];
+      if (plant.name[0] != tmpGroupWord) {
+        tmpGroupWord = plant.name[0];
+        groupedList.add(Text(tmpGroupWord));
+      }
+      groupedList.add(
+        Row(
+          children: [
+            Flexible(child: buildPlantCard(plant)),
+            if (i < plantList.length - 1)
+              Flexible(
+                child: buildPlantCard(
+                  plantList[i],
+                ),
+              ),
+            if (i == plantList.length - 1)
+              Flexible(
+                child: Container(),
+              ),
+          ],
+        ),
+      );
+    }
+
+    return groupedList;
   }
 
   Widget buildPlantCard(Plant plant) {
