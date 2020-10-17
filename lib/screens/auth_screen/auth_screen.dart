@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/auth_screen/searching_screen.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
 
 import '../../pathStrings.dart';
@@ -101,7 +102,12 @@ class _AuthScreenState extends State<AuthScreen> {
     return Column(
       children: [
         BlackButton(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SearchingScreen()),
+            );
+          },
           title: signIn,
         ),
       ],

@@ -41,6 +41,11 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/images/plants/
+  fonts:
+    - family: SFPro
+      fonts:
+        - asset: assets/fonts/SFProDisplayHeavy.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
