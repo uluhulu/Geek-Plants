@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/screens/auth_screen/searching_screen.dart';
+import 'package:geek_plants/screens/searching_screen/searching_screen.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
 
 import '../../pathStrings.dart';
