@@ -18,59 +18,12 @@ class _AuthScreenState extends State<AuthScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(geekPlantsBannerPath),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 60.0,
-              left: 42.0,
-              right: 42.0,
-            ),
-            child: TextField(
-              decoration: InputDecoration(hintText: hintEmail),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 43.0,
-              left: 42.0,
-              right: 42.0,
-            ),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(hintText: hintPassword),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: FlatButton(
-                onPressed: () {},
-                child: Text(
-                  forgetPassword,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          _buildBanner(),
+          _buildEmailBanner(),
+          _buildPasswordBanner(),
+          _buildForgetPasswordButton(),
           _buildLoginButton(),
-          FlatButton(
-            child: Text(
-              register,
-              style: TextStyle(
-                color: Colors.green,
-              ),
-            ),
-            onPressed: () {
-              /** */
-            },
-          ),
+          _buildRegisterButton(),
           Padding(
             padding: const EdgeInsets.only(top:33),
             child: Row(
@@ -88,6 +41,69 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
+  Widget _buildBanner(){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Image.asset(geekPlantsBannerPath),
+    );
+  }
+  Widget _buildEmailBanner(){
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 60.0,
+        left: 42.0,
+        right: 42.0,
+      ),
+      child: TextField(
+        decoration: InputDecoration(hintText: hintEmail),
+      ),
+    );
+  }
+   Widget _buildPasswordBanner(){
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 43.0,
+        left: 42.0,
+        right: 42.0,
+      ),
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(hintText: hintPassword),
+      ),
+    );
+  }
+  Widget _buildForgetPasswordButton(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: FlatButton(
+          onPressed: () {},
+          child: Text(
+            forgetPassword,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _buildRegisterButton(){
+    return FlatButton(
+      child: Text(
+        register,
+        style: TextStyle(
+          color: Colors.green,
+        ),
+      ),
+      onPressed: () {
+        /** */
+      },
+    );
+  }
+
 
   Widget _signInButton(String iconPath) {
     return IconButton(

@@ -14,7 +14,7 @@ class PlantCard extends StatelessWidget {
         children: <Widget>[
           _buildPlantImage(plant.photoPath),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(bottom:175.0, right: 8.0),
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
@@ -25,7 +25,7 @@ class PlantCard extends StatelessWidget {
                 onPressed: () {
                   // Add your onPressed code here!
                 },
-                child: Icon(Icons.add),
+                child: Icon(Icons.add, size: 28,),
               ),
             ),
           ),

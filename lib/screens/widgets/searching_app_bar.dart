@@ -19,19 +19,22 @@ class SearchingAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 45.0),
-              child: Text("Добавьте свои растения!",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.0,
-                      fontFamily: 'SFPro')),
-            ),
+            _buildAppBarText(),
             _buildSearchField(searchItems),
             FilterList(choseCategory: choseCategory),
           ],
         ),
       ),
+    );
+  }
+  Widget _buildAppBarText(){
+    return Padding(
+      padding: const EdgeInsets.only(top: 45.0),
+      child: Text("Добавьте свои растения!",
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontFamily: 'SFPro')),
     );
   }
 
