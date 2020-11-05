@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/screens/plant_information_screen/plant_information_screen.dart';
 
 class PlantCard extends StatelessWidget {
   Plant plant;
@@ -11,7 +12,10 @@ class PlantCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: (){
-          print('hello');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PlantInformation(plant: plant)),
+          );
         },
         child: Stack(
           alignment: Alignment.center,

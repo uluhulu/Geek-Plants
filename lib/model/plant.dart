@@ -4,10 +4,11 @@ class Plant {
   String name;
   String latName;
   String photoPath;
+  String description;
 
   // Image plantImage;
 
-  Plant({this.name, this.latName, this.photoPath});
+  Plant({this.name, this.latName, this.photoPath, this.description});
 
 
 }
