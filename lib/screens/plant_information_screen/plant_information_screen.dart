@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/model/plant.dart';
 
@@ -28,6 +29,7 @@ class _PlantInformationState extends State<PlantInformation> {
             ),
             _buildDescription(widget.plant.description),
             _buildInfoList(),
+            _buildPlantInfoContainer()
           ],
         ),
       ),
@@ -161,7 +163,10 @@ class _PlantInformationState extends State<PlantInformation> {
           // physics: NeverScrollableScrollPhysics(),
           children: [
             _buildWateringCard(),
-            _buildMoisteningCard(),],
+            _buildMoisteningCard(),
+            _buildFeedingCard(),
+            _buildTransplantingCard()
+          ],
         ),
       ),
     );
@@ -179,35 +184,36 @@ class _PlantInformationState extends State<PlantInformation> {
               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top:40.0,left: 26),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Полив",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    padding: const EdgeInsets.only(top: 40.0, left: 26),
+                    child: Row(children: [
+                      Text(
+                        "Полив",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
-                        SizedBox(
-                          width: 18 ,
-                        ),
-                        Image.asset("assets/vector/wector_watering.png",width: 13,height: 16.9,),
-                      ]
-                    ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        "assets/vector/wector_watering.png",
+                        width: 13,
+                        height: 16.9,
+                      ),
+                    ]),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top:10.0,left: 26.0, right: 31.0),
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
                 child: Text(
                   "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400
-                  ),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:23.0,left: 26.0, right: 110.0),
+                padding:
+                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
                 child: Text(
                   "Последний полив 20 января",
                   style: TextStyle(
@@ -223,6 +229,7 @@ class _PlantInformationState extends State<PlantInformation> {
       ),
     );
   }
+
   Widget _buildMoisteningCard() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -235,35 +242,36 @@ class _PlantInformationState extends State<PlantInformation> {
               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top:40.0,left: 26),
-                    child: Row(
-                        children: [
-                          Text(
-                            "Увлажнение",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 18 ,
-                          ),
-                          Image.asset("vector_moistening.png",width: 13,height: 16.9,),
-                        ]
-                    ),
+                    padding: const EdgeInsets.only(top: 40.0, left: 26),
+                    child: Row(children: [
+                      Text(
+                        "Увлажнение",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        "assets/vector/vector_moistening.png",
+                        width: 13,
+                        height: 16.9,
+                      ),
+                    ]),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top:10.0,left: 26.0, right: 31.0),
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
                 child: Text(
                   "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
-                  ),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:23.0,left: 26.0, right: 110.0),
+                padding:
+                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
                 child: Text(
                   "Последнее увлажнение 18 января",
                   style: TextStyle(
@@ -280,5 +288,169 @@ class _PlantInformationState extends State<PlantInformation> {
     );
   }
 
+  Widget _buildFeedingCard() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        width: 234,
+        height: 300,
+        child: Card(
+          child: Column(
+            children: [
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 40.0, left: 26),
+                    child: Row(children: [
+                      Text(
+                        "Подкормка",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        "assets/vector/vector_feeding.png",
+                        width: 13,
+                        height: 16.9,
+                      ),
+                    ]),
+                  )),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
+                child: Text(
+                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
+                child: Text(
+                  "Последняя подкормка 31/11/19",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w200,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
+  Widget _buildTransplantingCard() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        width: 234,
+        height: 300,
+        child: Card(
+          child: Column(
+            children: [
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 40.0, left: 26),
+                    child: Row(children: [
+                      Text(
+                        "Пересадка",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        "assets/vector/vector_transplanting.png",
+                        width: 13,
+                        height: 16.9,
+                      ),
+                    ]),
+                  )),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
+                child: Text(
+                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
+                child: Text(
+                  "Последняя пересадка 14/04/18",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w200,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPlantInfoContainer() {
+    return ExpandableNotifier(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            ScrollOnExpand(
+              scrollOnExpand: true,
+              scrollOnCollapse: false,
+              child: ExpandablePanel(
+                theme: const ExpandableThemeData(
+                  headerAlignment: ExpandablePanelHeaderAlignment.center,
+                  tapBodyToCollapse: true,
+                ),
+                header: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    "asshole",
+                    style: Theme.of(context).textTheme.body2,
+                  ),
+                ),
+                expanded: Container(
+                  color: Colors.blue,
+                  child: Image.network(
+                    'https://archiwumprzeszlosci.eu/uploads/posts/foto-muzhskaya-volosataya-zhopa-8.jpg',
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                builder: (_, collapsed, expanded) {
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      bottom: 10,
+                    ),
+                    child: Expandable(
+                      collapsed: collapsed,
+                      expanded: expanded,
+                      theme: const ExpandableThemeData(crossFadePoint: 0),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
