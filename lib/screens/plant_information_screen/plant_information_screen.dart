@@ -1,6 +1,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/screens/widgets/expandable_card.dart';
+
+import '../../strings.dart';
 
 class PlantInformation extends StatefulWidget {
   Plant plant;
@@ -216,6 +219,7 @@ class _PlantInformationState extends State<PlantInformation> {
                     const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
                 child: Text(
                   "Последний полив 20 января",
+                  maxLines: 2,
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w200,
@@ -405,51 +409,49 @@ class _PlantInformationState extends State<PlantInformation> {
   }
 
   Widget _buildPlantInfoContainer() {
-    return ExpandableNotifier(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            ScrollOnExpand(
-              scrollOnExpand: true,
-              scrollOnCollapse: false,
-              child: ExpandablePanel(
-                theme: const ExpandableThemeData(
-                  headerAlignment: ExpandablePanelHeaderAlignment.center,
-                  tapBodyToCollapse: true,
-                ),
-                header: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    "asshole",
-                    style: Theme.of(context).textTheme.body2,
-                  ),
-                ),
-                expanded: Container(
-                  color: Colors.blue,
-                  child: Image.network(
-                    'https://archiwumprzeszlosci.eu/uploads/posts/foto-muzhskaya-volosataya-zhopa-8.jpg',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-                builder: (_, collapsed, expanded) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                      bottom: 10,
-                    ),
-                    child: Expandable(
-                      collapsed: collapsed,
-                      expanded: expanded,
-                      theme: const ExpandableThemeData(crossFadePoint: 0),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: <Widget>[
+          _buildSeparator(),
+          ExpandableCard(
+            title: light,
+            info: lightDescription,
+          ),
+          _buildSeparator(),
+          ExpandableCard(title: humidity, info: humidityDescription),
+          _buildSeparator(),
+          ExpandableCard(title: soil, info: soilDescription),
+          _buildSeparator(),
+          ExpandableCard(title: trim, info: trimDescription),
+          _buildSeparator(),
+          ExpandableCard(
+            title: propagation,
+            info: propagationDescription,
+          ),
+          _buildSeparator(),
+          ExpandableCard(
+            title: diseasesAndPests,
+            info: diseasesAndPestsDescription,
+          ),
+          _buildSeparator(),
+          ExpandableCard(
+            title: careProblems,
+            info: careProblemsDescription,
+          ),
+          _buildSeparator(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSeparator() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0),
+      child: Container(
+        width: double.infinity,
+        height: 1,
+        color: Colors.black12,
       ),
     );
   }
