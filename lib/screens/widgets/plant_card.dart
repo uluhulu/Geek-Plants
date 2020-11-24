@@ -3,37 +3,41 @@ import 'package:geek_plants/model/plant.dart';
 import 'package:geek_plants/screens/plant_information_screen/plant_information_screen.dart';
 
 class PlantCard extends StatelessWidget {
-  Plant plant;
-  PlantCard({@required this.plant});
+  final Plant plant;
+
+  PlantCard({
+    @required this.plant,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => PlantInformation(plant: plant)),
+            MaterialPageRoute(
+                builder: (context) => PlantInformation(plant: plant)),
           );
         },
         child: Stack(
-          alignment: Alignment.center,
+          // alignment: Alignment.center,
           children: <Widget>[
             Ink(child: _buildPlantImage(plant.photoPath)),
-            Padding(
-              padding: const EdgeInsets.only(bottom:175.0, right: 8.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  mini: true,
-                  heroTag: Container(),
-                  onPressed: () {
-                    // Add your onPressed code here!
-                  },
-                  child: Icon(Icons.add, size: 28,),
+            Align(
+              alignment: Alignment.topRight,
+              child: FloatingActionButton(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                mini: true,
+                heroTag: Container(),
+                onPressed: () {
+                  // Add your onPressed code here!
+                },
+                child: Icon(
+                  Icons.add,
+                  size: 28,
                 ),
               ),
             ),
@@ -87,15 +91,13 @@ class PlantCard extends StatelessWidget {
       ),
     );
   }
-  Widget _buildPlantImage(String path){
+
+  Widget _buildPlantImage(String path) {
     return Image.asset(
       plant.photoPath,
       fit: BoxFit.fitWidth,
       width: 164,
     );
 
-    Widget _buildPlantNameContainer(){
-
-    }
   }
 }

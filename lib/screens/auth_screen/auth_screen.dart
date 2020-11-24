@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/searching_screen/searching_screen.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
+import 'package:geek_plants/values/pathStrings.dart';
 
-import '../../pathStrings.dart';
-import '../../strings.dart';
+import '../../values/strings.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
