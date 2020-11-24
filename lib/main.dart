@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/auth_screen/auth_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.grey,
       ),
-      home: Scaffold(),
+      home: AuthScreen(),
     );
   }
 }
