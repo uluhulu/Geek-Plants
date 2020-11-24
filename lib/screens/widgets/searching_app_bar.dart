@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/mocks.dart';
+import 'package:geek_plants/values/mocks.dart';
 
 import 'filter_list.dart';
 

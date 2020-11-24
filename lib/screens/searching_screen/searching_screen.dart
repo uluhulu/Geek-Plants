@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/mocks.dart';
+import 'package:geek_plants/values/mocks.dart';
 import 'package:geek_plants/screens/widgets/bottom_banner.dart';
 import 'package:geek_plants/screens/widgets/plant_card.dart';
 import 'package:geek_plants/screens/widgets/searching_app_bar.dart';

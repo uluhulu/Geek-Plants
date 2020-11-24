@@ -22,7 +22,6 @@ class BlackButton extends StatelessWidget {
         width: double.infinity,
         height: 51,
         child: RaisedButton(
-
           color: Colors.white,
           elevation: 0,
           highlightElevation: 0,
