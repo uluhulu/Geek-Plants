@@ -6,3 +6,6 @@ final facebook = "assets/icons/facebook.png";
 
 final abutilonPath = "assets/images/plants/Abutilon.png";
 final testAvatarPath = 'assets/images/test_avatar.png';
+
+///icons
+final searchIcon = "assets/vector/search_bottom.png";

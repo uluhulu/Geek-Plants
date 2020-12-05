@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/main_screen/main_screen.dart';
 
 class BottomBanner extends StatelessWidget {
   final Function chosePlants;
@@ -26,7 +27,12 @@ class BottomBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainScreen()),
+                    );
+                  },
                   child: Row(children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 15.5),
