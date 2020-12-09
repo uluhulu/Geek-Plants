@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/widgets/event_builder.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 enum CalendarType {
@@ -7,8 +8,15 @@ enum CalendarType {
   expand,
 }
 
+enum CalendarEvent {
+  transfer,
+  feeding,
+  watering,
+  wetting,
+}
+
 class Calendar extends StatefulWidget {
-  final Map<DateTime, List> events;
+  final Map<DateTime, List<CalendarEvent>> events;
 
   final CalendarType calendarType;
   final OnDaySelected onDaySelected;
@@ -36,7 +44,6 @@ class _CalendarState extends State<Calendar> {
 
   void _initCalendarController() {
     _calendarController = CalendarController();
-
   }
 
   @override
@@ -78,10 +85,7 @@ class _CalendarState extends State<Calendar> {
             children.add(
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: Image.asset(
-                  "assets/water.png",
-                  width: 8,
-                ),
+                child: buildCalendarEvents(calendarEvent: events),
               ),
             );
           }
@@ -105,4 +109,6 @@ class _CalendarState extends State<Calendar> {
 
     throw Exception('unknown calendar type');
   }
+
+
 }

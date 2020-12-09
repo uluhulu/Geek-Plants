@@ -9,3 +9,7 @@ final testAvatarPath = 'assets/images/test_avatar.png';
 
 ///icons
 final searchIcon = "assets/vector/search_bottom.png";
+final transferIcon = 'assets/icons/transfer.png';
+final feedingIcon = 'assets/icons/feeding.png';
+final wateringIcon = 'assets/icons/watering.png';
+final wettingIcon = 'assets/icons/wetting.png';

@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.grey,
       ),
+      home: MainScreen(),
       // home: AuthScreen(),
-      home: AuthScreen(),
     );
   }
 }

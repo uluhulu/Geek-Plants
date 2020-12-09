@@ -177,6 +177,7 @@ class _MainScreenState extends State<MainScreen> {
               SizedBox(height: 19),
               Calendar(
                 onDaySelected: (day, events, holidays) {},
+                events: {DateTime.now(): [CalendarEvent.watering]},
               ),
             ],
           ),
@@ -344,7 +345,7 @@ class CalendarHeader extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 160;
+  double get maxExtent => 300;
 
   @override
   double get minExtent => 160;
