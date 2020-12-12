@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/model/event.dart';
 import 'package:geek_plants/screens/widgets/event_builder.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -8,15 +9,9 @@ enum CalendarType {
   expand,
 }
 
-enum CalendarEvent {
-  transfer,
-  feeding,
-  watering,
-  wetting,
-}
 
 class Calendar extends StatefulWidget {
-  final Map<DateTime, List<CalendarEvent>> events;
+  final Map<DateTime, List<Event>> events;
 
   final CalendarType calendarType;
   final OnDaySelected onDaySelected;
@@ -78,22 +73,22 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
       ),
+
       builders: CalendarBuilders(
         markersBuilder: (context, date, events, holidays) {
           final children = <Widget>[];
           if (events.isNotEmpty) {
             children.add(
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: buildCalendarEvents(calendarEvent: events),
-              ),
+              buildCalendarEvents(calendarEvent: events),
             );
           }
 
           return children;
         },
+
       ),
       rowHeight: 74,
+
       headerVisible: false,
       onDaySelected: widget.onDaySelected,
     );

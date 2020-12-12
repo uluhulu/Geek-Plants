@@ -9,3 +9,9 @@ final openCalendarButton = 'Календарь ухода';
 
 ///todo убрать после получения реального пользователя
 final  testUserName = 'Мария Кудрявцева';
+
+///calendar screen
+final taskListTitle = 'Список задач';
+final taskRemaining = 'Осталось задач: ';
+final uncompleteTasks = 'Невыполненные задачи:';
+final completeTaskHeader = 'Выполнено: ';
