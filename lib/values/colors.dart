@@ -5,6 +5,7 @@ var appBarColor = palette['nero'];
 var dayBlocColor = palette['nero'];
 var uncompleteTaskColor = palette['nero'];
 var taskItemTitleColor = palette['nero'];
+var calendarBackgroundColor = palette['nero'];
 
 ///palette
 var palette = {
