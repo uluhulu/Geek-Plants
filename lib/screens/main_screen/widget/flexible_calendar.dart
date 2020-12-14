@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/widgets/calendar.dart';
 import 'package:geek_plants/values/colors.dart';
 import 'package:geek_plants/values/mocks.dart';
 import 'package:geek_plants/values/strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class FlexibleCalendar extends StatelessWidget{
-
+class FlexibleCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -23,7 +22,7 @@ class FlexibleCalendar extends StatelessWidget{
               SizedBox(height: 19),
               Calendar(
                 onDaySelected: (day, events, holidays) {},
-                updateDate: (date){},
+                updateDate: (date) {},
                 calendarType: CalendarType.collapse,
                 calendarController: CalendarController(),
                 events: {
@@ -49,7 +48,6 @@ class FlexibleCalendar extends StatelessWidget{
       ),
     );
   }
-
 
   Widget _buildOpenCalendarButton() {
     return InkWell(
@@ -81,7 +79,6 @@ class FlexibleCalendar extends StatelessWidget{
   }
 }
 
-
 class CalendarHeader extends SliverPersistentHeaderDelegate {
   final Widget calendarHeader;
 
@@ -89,10 +86,10 @@ class CalendarHeader extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context,
-      double shrinkOffset,
-      bool overlapsContent,
-      ) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return calendarHeader;
   }
 

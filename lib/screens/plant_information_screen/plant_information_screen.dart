@@ -1,6 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/screens/widgets/expandable_card.dart';
 
 import '../../strings.dart';

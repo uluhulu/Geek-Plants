@@ -1,6 +1,5 @@
+import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/values/pathStrings.dart';
-
-import '../model/plant.dart';
 
 List categories = [
   "Все",

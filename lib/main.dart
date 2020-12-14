@@ -4,6 +4,7 @@ import 'package:geek_plants/screens/auth_screen/auth_screen.dart';
 import 'package:geek_plants/screens/calendar_day_screen/calendar_day_screen.dart';
 import 'package:geek_plants/screens/calendar_screen/calendar_screen.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
+import 'package:geek_plants/screens/searching_screen/searching_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.grey,
       ),
       // home: MainScreen(),
-      home: AuthScreen(),
+      // home: AuthScreen(),
+      home: SearchingScreen(),
       // home: CalendarDayScreen(),
       // home: CalendarScreen(),
     );

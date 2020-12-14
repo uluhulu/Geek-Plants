@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 
 class PlantChangeInfo extends StatefulWidget {
   Plant plant;

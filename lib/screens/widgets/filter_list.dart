@@ -6,7 +6,6 @@ class FilterList extends StatelessWidget {
 
   const FilterList({Key key, this.choseCategory}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Expanded(

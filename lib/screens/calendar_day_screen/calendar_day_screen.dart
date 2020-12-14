@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/day_panel.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/task_item/task_item.dart';
 import 'package:geek_plants/values/mocks.dart';

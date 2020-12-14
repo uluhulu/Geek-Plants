@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 
 enum EventType {
   transfer,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/screens/plant_information_screen/plant_information_screen.dart';
 
 class PlantCard extends StatelessWidget {
@@ -98,9 +98,9 @@ class PlantCard extends StatelessWidget {
       fit: BoxFit.fitWidth,
       width: 164,
     );
-
   }
 }
+
 class PlantCardMainScreen extends StatelessWidget {
   final Plant plant;
 
@@ -174,13 +174,12 @@ class PlantCardMainScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildPlantImage(String path) {
     return Image.asset(
       plant.photoPath,
       fit: BoxFit.fitWidth,
       width: 164,
     );
-
   }
 }
-

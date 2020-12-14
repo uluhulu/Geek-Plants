@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
-import 'package:geek_plants/screens/widgets/calendar.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
 Widget buildCalendarEvents({@required List<Event> calendarEvent}) {

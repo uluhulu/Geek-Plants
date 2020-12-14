@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/widgets/event_builder.dart';
 import 'package:table_calendar/table_calendar.dart';
 

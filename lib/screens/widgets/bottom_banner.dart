@@ -38,14 +38,17 @@ class BottomBanner extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 15.5),
                       child: Text(
                         'Пропустить',
-                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w300),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 9.5),
-                      child: Image.asset("assets/vector/vector136.png",height: 15,),
+                      child: Image.asset(
+                        "assets/vector/vector136.png",
+                        height: 15,
+                      ),
                     )
-
                   ]),
                 ),
               )
