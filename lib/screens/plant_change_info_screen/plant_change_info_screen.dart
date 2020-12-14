@@ -17,9 +17,7 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
-          children: [
-
-          ],
+          children: [],
         ),
       ),
     );

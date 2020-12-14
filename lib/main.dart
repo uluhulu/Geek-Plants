@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.grey,
       ),
-      home: MainScreen(),
-      // home: AuthScreen(),
+      // home: MainScreen(),
+      home: AuthScreen(),
       // home: CalendarDayScreen(),
       // home: CalendarScreen(),
     );
