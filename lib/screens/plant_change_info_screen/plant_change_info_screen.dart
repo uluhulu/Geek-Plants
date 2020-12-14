@@ -14,7 +14,6 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ,
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
