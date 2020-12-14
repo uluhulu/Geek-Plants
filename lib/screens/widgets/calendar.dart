@@ -73,10 +73,10 @@ class Calendar extends StatelessWidget {
         },
       ),
       onCalendarCreated: (first, last, format) {
-      updateDate(first);
+        updateDate(first);
       },
       onVisibleDaysChanged: (first, last, format) {
-      updateDate(first);
+        updateDate(first);
       },
       rowHeight: calendarType == CalendarType.collapse
           ? 74
