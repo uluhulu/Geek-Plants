@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       // home: MainScreen(),
       // home: AuthScreen(),
       // home: CalendarDayScreen(),
-      home: CalendarScreen(),
+      // home: CalendarScreen(),
     );
   }
 }

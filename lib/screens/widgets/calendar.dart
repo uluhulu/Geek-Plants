@@ -9,46 +9,33 @@ enum CalendarType {
   expand,
 }
 
-
-class Calendar extends StatefulWidget {
+class Calendar extends StatelessWidget {
   final Map<DateTime, List<Event>> events;
 
   final CalendarType calendarType;
   final OnDaySelected onDaySelected;
+  final Function(DateTime date) updateDate;
+  final CalendarController calendarController;
 
   Calendar({
     this.events,
     this.calendarType = CalendarType.collapse,
     this.onDaySelected,
+    @required this.calendarController,
+    this.updateDate,
   });
 
   @override
-  State<StatefulWidget> createState() {
-    return _CalendarState();
-  }
-}
-
-class _CalendarState extends State<Calendar> {
-  CalendarController _calendarController;
-
-  @override
-  void initState() {
-    super.initState();
-    _initCalendarController();
-  }
-
-  void _initCalendarController() {
-    _calendarController = CalendarController();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    print("тип календаря ${calendarType}");
     return TableCalendar(
-      calendarController: _calendarController,
-      events: widget.events,
+      calendarController: calendarController,
+      events: events,
       startingDayOfWeek: StartingDayOfWeek.monday,
       availableGestures: getSwipeDirection(),
-      initialCalendarFormat: CalendarFormat.week,
+      initialCalendarFormat: calendarType == CalendarType.collapse
+          ? CalendarFormat.week
+          : CalendarFormat.month,
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: TextStyle(color: Colors.white),
         weekendStyle: TextStyle(color: Colors.grey),
@@ -73,7 +60,6 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
       ),
-
       builders: CalendarBuilders(
         markersBuilder: (context, date, events, holidays) {
           final children = <Widget>[];
@@ -85,17 +71,23 @@ class _CalendarState extends State<Calendar> {
 
           return children;
         },
-
       ),
-      rowHeight: 74,
-
+      onCalendarCreated: (first, last, format) {
+      updateDate(first);
+      },
+      onVisibleDaysChanged: (first, last, format) {
+      updateDate(first);
+      },
+      rowHeight: calendarType == CalendarType.collapse
+          ? 74
+          : MediaQuery.of(context).size.height / 8,
       headerVisible: false,
-      onDaySelected: widget.onDaySelected,
+      onDaySelected: onDaySelected,
     );
   }
 
   AvailableGestures getSwipeDirection() {
-    switch (widget.calendarType) {
+    switch (calendarType) {
       case CalendarType.collapse:
         return AvailableGestures.horizontalSwipe;
       case CalendarType.expand:
@@ -104,6 +96,4 @@ class _CalendarState extends State<Calendar> {
 
     throw Exception('unknown calendar type');
   }
-
-
 }
