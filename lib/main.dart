@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/auth_screen/auth_screen.dart';
 import 'package:geek_plants/screens/calendar_day_screen/calendar_day_screen.dart';
+import 'package:geek_plants/screens/calendar_screen/calendar_screen.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: MainScreen(),
       // home: AuthScreen(),
-      home: CalendarDayScreen(),
+      // home: CalendarDayScreen(),
+      // home: CalendarScreen(),
     );
   }
 }

@@ -5,8 +5,10 @@ import 'package:geek_plants/screens/widgets/calendar.dart';
 import 'package:geek_plants/values/colors.dart';
 import 'package:geek_plants/values/mocks.dart';
 import 'package:geek_plants/values/strings.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class FlexibleCalendar extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -21,6 +23,9 @@ class FlexibleCalendar extends StatelessWidget{
               SizedBox(height: 19),
               Calendar(
                 onDaySelected: (day, events, holidays) {},
+                updateDate: (date){},
+                calendarType: CalendarType.collapse,
+                calendarController: CalendarController(),
                 events: {
                   DateTime.now(): [
                     Event(

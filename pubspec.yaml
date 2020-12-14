@@ -31,6 +31,7 @@ dependencies:
   expandable: ^4.1.4
   table_calendar:
     path: dependencies/table_calendar
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
