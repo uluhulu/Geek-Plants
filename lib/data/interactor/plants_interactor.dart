@@ -9,16 +9,26 @@ class PlantsInteractor {
 
   List<Plant> getMyPlants() => myPlants;
 
-  List<Plant> searchPlants(List<Plant> plantList, String plantName) =>
-      plantList.where(
-        (element) => element.name.contains(plantName),
-      );
+  List<Plant> searchPlants(String plantName) {
+    final searchedPlants = <Plant>[];
+    allPlants.forEach((element) {
+      if (element.name.toLowerCase().contains(plantName)) {
+        searchedPlants.add(element);
+      }
+    });
+    return searchedPlants;
+  }
 
-  List<Plant> filterPlants(String category) => allPlants.where(
+  List<Plant> filterPlants(String category) => allPlants
+      .where(
         (element) => element.category == category,
-      );
+      )
+      .toList();
 
   void addPlantsToAll(Plant plant) => allPlants.add(plant);
 
   void addPlantsToMy(Plant plant) => myPlants.add(plant);
+
+  void removeFromMy(Plant plant) =>
+      myPlants.removeWhere((element) => element.name.contains(plant.name));
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/screens/searching_screen/searching_screen.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_screen.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
@@ -124,7 +124,7 @@ class _AuthScreenState extends State<AuthScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SearchingScreen()),
+              MaterialPageRoute(builder: (context) => AllPlantsScreen()),
             );
           },
           title: signIn,

@@ -1,9 +1,7 @@
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/screens/widgets/expandable_card.dart';
-
-import '../../strings.dart';
+import 'package:geek_plants/values/strings.dart';
 
 class PlantInformation extends StatefulWidget {
   Plant plant;

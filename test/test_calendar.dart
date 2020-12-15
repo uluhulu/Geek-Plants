@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geek_plants/data/interactor/calendar_interactor.dart';
+import 'package:geek_plants/data/interactor/plants_interactor.dart';
 import 'package:geek_plants/data/model/event.dart';
 import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/values/pathStrings.dart';
@@ -30,7 +31,8 @@ void main() {
     ),
   ];
 
-  final calendarInteractor = CalendarInteractor(plantList);
+  final plantsInteractor = PlantsInteractor();
+  final calendarInteractor = CalendarInteractor(plantsInteractor);
 
   test(
     "Тест поиска всех евентов",
