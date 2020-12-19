@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 
 enum EventType {
   transfer,
@@ -10,11 +10,11 @@ enum EventType {
 
 class Event {
   final EventType type;
-  final Plant plant;
+  final DateTime time;
 
   Event({
     @required this.type,
-    @required this.plant,
+    @required this.time,
   });
 }
 

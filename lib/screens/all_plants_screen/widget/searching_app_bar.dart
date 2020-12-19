@@ -1,50 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/values/mocks.dart';
 
-import 'filter_list.dart';
+import '../../widgets/filter_list.dart';
 
 class SearchingAppBar extends StatelessWidget {
-  final Function searchItems;
-  final Function choseCategory;
+  final Function(String name) searchItems;
+  final Function(String category) choseCategory;
 
-  const SearchingAppBar({Key key, this.searchItems, this.choseCategory}) : super(key: key);
+  SearchingAppBar({
+    Key key,
+    @required this.searchItems,
+    this.choseCategory,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      automaticallyImplyLeading: false,
       expandedHeight: 196.0,
-      floating: false,
-      pinned: true,
+      floating: true,
+      pinned: false,
       backgroundColor: Color.fromRGBO(30, 30, 30, 1),
       flexibleSpace: FlexibleSpaceBar(
         background: Column(
           children: <Widget>[
             _buildAppBarText(),
-            _buildSearchField(searchItems),
+            _buildSearchField(context),
             FilterList(choseCategory: choseCategory),
           ],
         ),
       ),
     );
   }
-  Widget _buildAppBarText(){
+
+  Widget _buildAppBarText() {
     return Padding(
       padding: const EdgeInsets.only(top: 45.0),
-      child: Text("Добавьте свои растения!",
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
-              fontFamily: 'SFPro')),
+      child: Text(
+        "Добавьте свои растения!",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontFamily: 'SFPro',
+        ),
+      ),
     );
   }
 
-  Widget _buildSearchField(Function searchItems){
+  Widget _buildSearchField(BuildContext context) {
     return Padding(
-      padding:
-      const EdgeInsets.only(top: 28, left: 14, right: 14),
+      padding: const EdgeInsets.only(
+        top: 28,
+        left: 14,
+        right: 14,
+      ),
       child: TextField(
-        onTap: (){
-          searchItems();
+        onChanged: searchItems,
+        onSubmitted: (text) {
+          FocusScope.of(context).unfocus();
         },
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
@@ -56,13 +68,21 @@ class SearchingAppBar extends StatelessWidget {
             ),
           ),
           filled: true,
-          fillColor: Color.fromRGBO(255, 255, 255, 0.1),
+          fillColor: Color.fromRGBO(
+            255,
+            255,
+            255,
+            0.1,
+          ),
           hintText: 'Поиск',
-          hintStyle:
-          TextStyle(fontSize: 16.0, color: Colors.white),
+          hintStyle: TextStyle(fontSize: 16.0, color: Colors.white),
           prefixIcon: Padding(
-            padding:
-            const EdgeInsets.fromLTRB(9.0, 6.0, 9.0, 6.0),
+            padding: const EdgeInsets.fromLTRB(
+              9.0,
+              6.0,
+              9.0,
+              6.0,
+            ),
             child: Icon(
               Icons.search,
               color: Color(0xffC4C6CC),

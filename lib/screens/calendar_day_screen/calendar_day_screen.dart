@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/day_panel.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/task_item/task_item.dart';
 import 'package:geek_plants/values/mocks.dart';
@@ -17,15 +17,15 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
   final uncompleteTasks = <Event>[
     Event(
       type: EventType.transfer,
-      plant: plantList[0],
+      time: DateTime.now(),
     ),
     Event(
       type: EventType.feeding,
-      plant: plantList[1],
+      time: DateTime.now(),
     ),
     Event(
       type: EventType.watering,
-      plant: plantList[2],
+      time: DateTime.now(),
     ),
   ];
 
@@ -77,7 +77,7 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
             onTap: () {
               _addToComplete(index);
             },
-            event: uncompleteTasks[index],
+            // event: uncompleteTasks[index],
             isSelected: false,
           );
         },
@@ -113,7 +113,7 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
               onTap: () {
                 _removeFromComplete(index);
               },
-              event: completeTasks[index],
+              // event: completeTasks[index],
               isSelected: true,
             );
           },

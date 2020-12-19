@@ -18,7 +18,9 @@ class DayPanel extends SliverPersistentHeaderDelegate {
       child: Row(
         children: [
           _buildDayBlock(),
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           _buildTaskBlock(),
         ],
       ),

@@ -1,10 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
 
 class BottomBanner extends StatelessWidget {
-  final Function chosePlants;
+  final int plantsCount;
 
-  const BottomBanner({Key key, this.chosePlants}) : super(key: key);
+  BottomBanner({
+    Key key,
+    @required this.plantsCount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,34 +24,35 @@ class BottomBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: Text(
-                  'Добавлено: 0 растений',
+                  'Добавлено: $plantsCount растений',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainScreen()),
-                    );
-                  },
-                  child: Row(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.5),
-                      child: Text(
-                        'Пропустить',
-                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),
-                      ),
+              Spacer(),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    CupertinoPageRoute(builder: (context) => MainScreen()),
+                    (route) => false,
+                  );
+                },
+                child: Row(children: [
+                  Text(
+                    'Далее',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w300,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 9.5),
-                      child: Image.asset("assets/vector/vector136.png",height: 15,),
-                    )
-
-                  ]),
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 9.5),
+                    child: Image.asset(
+                      "assets/vector/vector136.png",
+                      height: 15,
+                    ),
+                  )
+                ]),
               )
             ],
           ),

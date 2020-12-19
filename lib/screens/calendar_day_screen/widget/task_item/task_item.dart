@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/task_item/indicator.dart';
 import 'package:geek_plants/screens/widgets/event_builder.dart';
 import 'package:geek_plants/values/colors.dart';
 
 class TaskItem extends StatefulWidget {
-  final Event event;
+  final EventType event;
   final Function() onTap;
   final bool isSelected;
 
@@ -86,9 +86,9 @@ class TaskItemState extends State<TaskItem> {
           width: 48,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(widget.event.plant.photoPath),
-            ),
+            // image: DecorationImage(
+            //   image: AssetImage(widget.event.plant.photoPath),
+            // ),
           ),
         ),
       ),
@@ -120,7 +120,8 @@ class TaskItemState extends State<TaskItem> {
     return Container(
       constraints: BoxConstraints(maxWidth: 188),
       child: Text(
-        "${eventTypeMapper(widget.event.type)} ${widget.event.plant.name}",
+        "test",
+        // "${eventTypeMapper(widget.event.type)} ${widget.event.plant.name}",
         style: TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.w300,

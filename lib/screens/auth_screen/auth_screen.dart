@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/screens/searching_screen/searching_screen.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_screen.dart';
 import 'package:geek_plants/screens/widgets/black_button.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
           _buildLoginButton(),
           _buildRegisterButton(),
           Padding(
-            padding: const EdgeInsets.only(top:33),
+            padding: const EdgeInsets.only(top: 33),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -34,20 +34,21 @@ class _AuthScreenState extends State<AuthScreen> {
                 _signInButton(google),
                 _signInButton(facebook),
               ],
-
             ),
           )
         ],
       ),
     );
   }
-  Widget _buildBanner(){
+
+  Widget _buildBanner() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Image.asset(geekPlantsBannerPath),
     );
   }
-  Widget _buildEmailBanner(){
+
+  Widget _buildEmailBanner() {
     return Padding(
       padding: const EdgeInsets.only(
         top: 60.0,
@@ -59,7 +60,8 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-   Widget _buildPasswordBanner(){
+
+  Widget _buildPasswordBanner() {
     return Padding(
       padding: const EdgeInsets.only(
         top: 43.0,
@@ -72,7 +74,8 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-  Widget _buildForgetPasswordButton(){
+
+  Widget _buildForgetPasswordButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Align(
@@ -90,7 +93,8 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-  Widget _buildRegisterButton(){
+
+  Widget _buildRegisterButton() {
     return FlatButton(
       child: Text(
         register,
@@ -104,12 +108,11 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-
   Widget _signInButton(String iconPath) {
     return IconButton(
       iconSize: 57.0,
       color: Colors.black,
-      onPressed: () {  },
+      onPressed: () {},
       icon: Image.asset(iconPath),
     );
   }
@@ -121,7 +124,7 @@ class _AuthScreenState extends State<AuthScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SearchingScreen()),
+              MaterialPageRoute(builder: (context) => AllPlantsScreen()),
             );
           },
           title: signIn,
