@@ -1,4 +1,4 @@
-import 'package:geek_plants/data/model/event.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 
 class Plant {
   final String name;
@@ -7,7 +7,7 @@ class Plant {
   final String description;
   final String category;
 
-  final List<Event> events;
+  final Map<DateTime, List<EventType>> events;
 
   Plant({
     this.name,

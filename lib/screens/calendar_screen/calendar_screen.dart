@@ -9,6 +9,13 @@ import 'package:geek_plants/values/strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarScreen extends StatefulWidget {
+  final Map<DateTime, List<EventType>> eventList;
+
+  const CalendarScreen({
+    Key key,
+    @required this.eventList,
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CalendarScreenState();
@@ -94,22 +101,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         onDaySelected: (day, events, holidays) {},
         calendarType: CalendarType.expand,
         calendarController: calendarController,
-        events: {
-          DateTime.now(): [
-            Event(
-              type: EventType.watering,
-              plant: plantList[0],
-            ),
-            Event(
-              type: EventType.feeding,
-              plant: plantList[0],
-            ),
-            Event(
-              type: EventType.transfer,
-              plant: plantList[0],
-            ),
-          ]
-        },
+        events: widget.eventList,
       ),
     );
   }

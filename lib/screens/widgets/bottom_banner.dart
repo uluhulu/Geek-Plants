@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
 
@@ -30,9 +31,10 @@ class BottomBanner extends StatelessWidget {
               Spacer(),
               FlatButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
+                    CupertinoPageRoute(builder: (context) => MainScreen()),
+                    (route) => false,
                   );
                 },
                 child: Row(children: [

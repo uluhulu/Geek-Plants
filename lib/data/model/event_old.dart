@@ -10,11 +10,11 @@ enum EventType {
 
 class Event {
   final EventType type;
-  final Plant plant;
+  final DateTime time;
 
   Event({
     @required this.type,
-    @required this.plant,
+    @required this.time,
   });
 }
 

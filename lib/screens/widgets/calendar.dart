@@ -10,7 +10,7 @@ enum CalendarType {
 }
 
 class Calendar extends StatelessWidget {
-  final Map<DateTime, List<Event>> events;
+  final Map<DateTime, List<EventType>> events;
 
   final CalendarType calendarType;
   final OnDaySelected onDaySelected;
@@ -27,7 +27,6 @@ class Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("тип календаря ${calendarType}");
     return TableCalendar(
       calendarController: calendarController,
       events: events,

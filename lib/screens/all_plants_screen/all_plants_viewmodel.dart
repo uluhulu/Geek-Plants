@@ -17,9 +17,6 @@ class AllPlantsViewModel {
   });
 
   void init() {
-    myPlantsController.stream.listen((event) {
-      print("событие: $event");
-    });
     loadPlantList();
     getMyPlants();
   }
@@ -49,14 +46,12 @@ class AllPlantsViewModel {
 
     if (category == categories[0]) {
       plantsController.add(interactor.getAllPlants());
-      interactor.myPlants.clear();
       getMyPlants();
       return;
     }
     final filteredPlants = interactor.filterPlants(category);
     if (filteredPlants.isNotEmpty) {
       plantsController.add(filteredPlants);
-      interactor.myPlants.clear();
       getMyPlants();
       return;
     }
