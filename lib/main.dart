@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geek_plants/screens/auth_screen/auth_screen.dart';
 import 'package:geek_plants/screens/calendar_day_screen/calendar_day_screen.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: MainScreen(),
       // home: AuthScreen(),
-      home: CalendarDayScreen(),
+      home: PlantChangeInfo(),
     );
   }
 }
