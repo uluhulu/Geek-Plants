@@ -1,12 +1,15 @@
- import 'package:flutter/material.dart';
-class PlantCharacteristics extends StatelessWidget{
+import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/widget/expandable_edit_card.dart';
+
+class PlantCharacteristics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _buildPlantsCharacteristics();
   }
-  Widget _buildPlantsCharacteristics(){
+
+  Widget _buildPlantsCharacteristics() {
     return Padding(
-      padding: const EdgeInsets.only(left : 19.0, bottom: 63.0),
+      padding: const EdgeInsets.only(left: 19.0, bottom: 63.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -14,30 +17,56 @@ class PlantCharacteristics extends StatelessWidget{
             padding: const EdgeInsets.only(bottom: 21.0),
             child: Text(
               "Характеристики",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
           ),
           _buildSeparator(),
-          _buildPlantAge(),
+          ExpandableCharCard(
+            title: "Возраст",
+            onSelect: (String selectedValue) {},
+            values: ["1 год", "2 года", "3 года"],
+          ),
           _buildSeparator(),
-          _buildPlantSize(),
+          ExpandableCharCard(
+            title: "Размер/Высота",
+            onSelect: (String selectedValue) {},
+            values: [ "20 см", "40 см","60 см", "80 см", "100 см","150 см", "200 см" ],
+          ),
           _buildSeparator(),
-          _buildPlantPotVolume(),
+          ExpandableCharCard(
+            title: "Объем горшка",
+            onSelect: (String selectedValue) {},
+            values: [ "1 л", "2 л","3 л","4 л", "5 л","6 л", "8 л","10 л", "15 л" ],
+          ),
           _buildSeparator(),
-          _buildPlantLighting(),
+          ExpandableCharCard(
+            title: "Освещение",
+            onSelect: (String selectedValue) {},
+            values: [ "У окна", "В комнате" ],
+          ),
           _buildSeparator(),
-          _buildPlantLocation(),
-
+          ExpandableCharCard(
+            title: "Освещение",
+            onSelect: (String selectedValue) {},
+            values: [ "Север", "Запад", "Юг" , "Восток"  ],
+          ),
         ],
       ),
     );
   }
-  Widget _buildPlantAge(){
+
+  Widget _buildPlantAge() {
+    return ExpandableCharCard(
+      title: "Возраст",
+      onSelect: (String selectedValue) {},
+      values: ["1 год", "2 года", "3 года"],
+    );
     return Padding(
-      padding: const EdgeInsets.only(top: 23.0, bottom: 23.0, right: 15.0,),
+      padding: const EdgeInsets.only(
+        top: 23.0,
+        bottom: 23.0,
+        right: 15.0,
+      ),
       child: GestureDetector(
         onTap: () {},
         child: Row(
@@ -47,11 +76,9 @@ class PlantCharacteristics extends StatelessWidget{
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Spacer(
-            ),
+            Spacer(),
             Opacity(
               opacity: 0.5,
               child: Text(
@@ -70,11 +97,15 @@ class PlantCharacteristics extends StatelessWidget{
         ),
       ),
     );
-}
+  }
 
-  Widget _buildPlantSize(){
+  Widget _buildPlantSize() {
     return Padding(
-      padding: const EdgeInsets.only(top: 23.0, bottom: 23.0, right: 15.0,),
+      padding: const EdgeInsets.only(
+        top: 23.0,
+        bottom: 23.0,
+        right: 15.0,
+      ),
       child: GestureDetector(
         onTap: () {},
         child: Row(
@@ -84,14 +115,15 @@ class PlantCharacteristics extends StatelessWidget{
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Spacer(
-            ),
+            Spacer(),
             Text(
               'Маленький(30см)',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(0.5)),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black.withOpacity(0.5)),
             ),
             Container(
               width: 9.5,
@@ -106,9 +138,13 @@ class PlantCharacteristics extends StatelessWidget{
     );
   }
 
-  Widget _buildPlantPotVolume(){
+  Widget _buildPlantPotVolume() {
     return Padding(
-      padding: const EdgeInsets.only(top: 23.0, bottom: 23.0, right: 15.0,),
+      padding: const EdgeInsets.only(
+        top: 23.0,
+        bottom: 23.0,
+        right: 15.0,
+      ),
       child: GestureDetector(
         onTap: () {},
         child: Row(
@@ -118,14 +154,15 @@ class PlantCharacteristics extends StatelessWidget{
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Spacer(
-            ),
+            Spacer(),
             Text(
               '2 л',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(0.5)),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black.withOpacity(0.5)),
             ),
             Container(
               width: 9.5,
@@ -140,9 +177,13 @@ class PlantCharacteristics extends StatelessWidget{
     );
   }
 
-  Widget _buildPlantLighting(){
+  Widget _buildPlantLighting() {
     return Padding(
-      padding: const EdgeInsets.only(top: 23.0, bottom: 23.0, right: 15.0,),
+      padding: const EdgeInsets.only(
+        top: 23.0,
+        bottom: 23.0,
+        right: 15.0,
+      ),
       child: GestureDetector(
         onTap: () {},
         child: Row(
@@ -152,14 +193,15 @@ class PlantCharacteristics extends StatelessWidget{
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Spacer(
-            ),
+            Spacer(),
             Text(
               'У окна',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(0.5)),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black.withOpacity(0.5)),
             ),
             Container(
               width: 9.5,
@@ -174,9 +216,13 @@ class PlantCharacteristics extends StatelessWidget{
     );
   }
 
-  Widget _buildPlantLocation(){
+  Widget _buildPlantLocation() {
     return Padding(
-      padding: const EdgeInsets.only(top: 23.0, bottom: 23.0, right: 15.0,),
+      padding: const EdgeInsets.only(
+        top: 23.0,
+        bottom: 23.0,
+        right: 15.0,
+      ),
       child: GestureDetector(
         onTap: () {},
         child: Row(
@@ -186,14 +232,15 @@ class PlantCharacteristics extends StatelessWidget{
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black
-              ),
+                  color: Colors.black),
             ),
-            Spacer(
-            ),
+            Spacer(),
             Text(
               'Север',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(0.5)),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black.withOpacity(0.5)),
             ),
             Container(
               width: 9.5,
@@ -207,6 +254,7 @@ class PlantCharacteristics extends StatelessWidget{
       ),
     );
   }
+
   Widget _buildSeparator() {
     return Container(
       width: double.infinity,
@@ -215,4 +263,3 @@ class PlantCharacteristics extends StatelessWidget{
     );
   }
 }
-

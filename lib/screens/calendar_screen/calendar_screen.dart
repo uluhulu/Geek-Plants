@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/screens/widgets/calendar.dart';
@@ -115,7 +114,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       },
       backgroundColor: Colors.white.withOpacity(0.5),
       child: Icon(
-        Icons.keyboard_arrow_up_sharp,
+        Icons.keyboard_arrow_up,
         color: calendarBackgroundColor,
       ),
     );

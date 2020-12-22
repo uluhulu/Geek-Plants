@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/plant.dart';
-import 'package:geek_plants/screens/widgets/expandable_card.dart';
+import 'package:geek_plants/screens/plant_information_screen/widget/expandable_info_card.dart';
 import 'package:geek_plants/values/strings.dart';
 
 class PlantInformation extends StatefulWidget {
@@ -412,28 +412,28 @@ class _PlantInformationState extends State<PlantInformation> {
       child: Column(
         children: <Widget>[
           _buildSeparator(),
-          ExpandableCard(
+          ExpandableInfoCard(
             title: light,
             info: lightDescription,
           ),
           _buildSeparator(),
-          ExpandableCard(title: humidity, info: humidityDescription),
+          ExpandableInfoCard(title: humidity, info: humidityDescription),
           _buildSeparator(),
-          ExpandableCard(title: soil, info: soilDescription),
+          ExpandableInfoCard(title: soil, info: soilDescription),
           _buildSeparator(),
-          ExpandableCard(title: trim, info: trimDescription),
+          ExpandableInfoCard(title: trim, info: trimDescription),
           _buildSeparator(),
-          ExpandableCard(
+          ExpandableInfoCard(
             title: propagation,
             info: propagationDescription,
           ),
           _buildSeparator(),
-          ExpandableCard(
+          ExpandableInfoCard(
             title: diseasesAndPests,
             info: diseasesAndPestsDescription,
           ),
           _buildSeparator(),
-          ExpandableCard(
+          ExpandableInfoCard(
             title: careProblems,
             info: careProblemsDescription,
           ),

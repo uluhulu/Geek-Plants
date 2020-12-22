@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geek_plants/model/plant.dart';
+import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/cancel_button.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_add_photo.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_care.dart';
@@ -13,11 +13,11 @@ import 'package:geek_plants/values/pathStrings.dart';
 
 class PlantChangeInfo extends StatefulWidget {
   Plant plant = Plant(
-  name: "Абутилон (Катаника)",
-  latName: "лат.Abutilon",
-  photoPath: abutilonPath,
-  description:
-  "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва).");
+      name: "Абутилон (Катаника)",
+      latName: "лат.Abutilon",
+      photoPath: abutilonPath,
+      description:
+          "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва).");
 
   @override
   _PlantChangeInfoState createState() => _PlantChangeInfoState();
@@ -31,9 +31,7 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
       appBar: AppBar(
         title: Text(
           "О растении",
-          style: TextStyle(
-            color: Colors.black
-          ),
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
@@ -43,9 +41,12 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TitleWidget(name: widget.plant.name,latName: widget.plant.latName ),
+            TitleWidget(
+              name: widget.plant.name,
+              latName: widget.plant.latName,
+            ),
             _buildSeparator(),
-            PlantCover(photoPath:widget.plant.photoPath ),
+            PlantCover(photoPath: widget.plant.photoPath),
             _buildSeparator(),
             PlantName(),
             PlantAddPhoto(),
@@ -69,5 +70,4 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
       ),
     );
   }
-
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'expandable_care_card.dart';
+
 class PlantCareCharacteristics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class PlantCareCharacteristics extends StatelessWidget {
             ),
           ),
           _buildSeparator(),
-          _buildPlantWatering(),
+          ExpandableCareCard(title: "Полив", values: "АВП", ),
           _buildSeparator(),
           _buildPlantHydration(),
           _buildSeparator(),
