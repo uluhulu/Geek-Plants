@@ -10,7 +10,7 @@ enum CalendarType {
 }
 
 class Calendar extends StatelessWidget {
-  final Map<DateTime, List<EventType>> events;
+  final Map<DateTime, List<Event>> events;
 
   final CalendarType calendarType;
   final OnDaySelected onDaySelected;

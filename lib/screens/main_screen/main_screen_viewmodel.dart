@@ -11,7 +11,7 @@ class MainScreenViewModel {
   final CalendarInteractor calendarInteractor;
 
   final StreamController<List<Plant>> myPlants = StreamController();
-  final StreamController<Map<DateTime, List<EventType>>> events =
+  final StreamController<Map<DateTime, List<Event>>> events =
       StreamController();
 
   MainScreenViewModel({
@@ -36,5 +36,9 @@ class MainScreenViewModel {
 
   void initPlants() {
     myPlants.add(plantsInteractor.getMyPlants());
+  }
+
+  List<Event>getEventsByDay(DateTime dateTime){
+    return calendarInteractor.getEventsByDay(dateTime);
   }
 }

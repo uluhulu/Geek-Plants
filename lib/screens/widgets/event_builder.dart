@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
-Widget buildCalendarEvents({@required List<EventType> calendarEvent}) {
+Widget buildCalendarEvents({@required List<Event> calendarEvent}) {
   List<Widget> eventsList = [];
   calendarEvent.forEach((element) {
     eventsList.add(Padding(
@@ -22,9 +22,9 @@ Widget buildCalendarEvents({@required List<EventType> calendarEvent}) {
   );
 }
 
-Widget buildCalendarEvent(EventType event) {
+Widget buildCalendarEvent(Event event) {
   String imagePath;
-  switch (event) {
+  switch (event.type) {
     case EventType.transfer:
       imagePath = transferIcon;
       break;
@@ -42,5 +42,6 @@ Widget buildCalendarEvent(EventType event) {
   return Image.asset(
     imagePath,
     width: 8,
+    color: event.isDone ? Colors.grey : null,
   );
 }

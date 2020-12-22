@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/di.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_viewmodel.dart';
 import 'package:geek_plants/screens/plant_information_screen/plant_information_screen.dart';
 
 class PlantCard extends StatefulWidget {
   final Plant plant;
-  final VoidCallback addCallback;
+  final AllPlantsViewModel viewModel;
   final List<Plant> myPlantsList;
 
   PlantCard({
     @required this.plant,
-    @required this.addCallback,
+    @required this.viewModel,
     @required this.myPlantsList,
   });
 
@@ -21,7 +22,6 @@ class PlantCard extends StatefulWidget {
 }
 
 class PlantCardState extends State<PlantCard> {
-  var isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,19 +87,20 @@ class PlantCardState extends State<PlantCard> {
                 heroTag: Container(),
                 onPressed: () {
                   setState(() {
-                    isPressed = !isPressed;
-                    if(!isPressed){
-                      plantsInteractor.removeFromMy(widget.plant);
-                    }else{
-                      plantsInteractor.addPlantsToMy(widget.plant);
+
+                    if (widget.plant.isSelected) {
+                      // plantsInteractor.removeFromMy(widget.plant);
+                      widget.viewModel.removeFromMy(widget.plant);
+                    } else {
+                      widget.viewModel.addToMy(widget.plant);
+                      // plantsInteractor.addPlantsToMy(widget.plant);
                     }
                   });
-                  widget.addCallback?.call();
                 },
                 child: Icon(
-                  isPressed ? Icons.done : Icons.add,
+                  widget.plant.isSelected ? Icons.done : Icons.add,
                   size: 28,
-                  color: isPressed ? Colors.green : Colors.black,
+                  color: widget.plant.isSelected ? Colors.green : Colors.black,
                 ),
               ),
             ),

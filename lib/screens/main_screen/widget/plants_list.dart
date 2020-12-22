@@ -14,25 +14,24 @@ class PlantsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      child: StreamBuilder<List<Plant>>(
+    return StreamBuilder<List<Plant>>(
         stream: viewModel.myPlants.stream,
         builder: (context, snapshot) {
-          return GridView.builder(
-            itemCount: snapshot.data?.length ?? 0 ,
-            itemBuilder: (context, index) {
-              return PlantCardMainScreen(
-                plant: snapshot.data[index],
-              );
-            },
+          return SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return PlantCardMainScreen(
+                  plant: snapshot.data[index] ?? [],
+                );
+              },
+              childCount: snapshot.data?.length ?? 0,
+            ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.6,
               mainAxisSpacing: 0,
             ),
           );
-        }
-      ),
-    );
+        });
   }
 }

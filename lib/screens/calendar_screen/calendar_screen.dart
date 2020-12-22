@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/di.dart';
+import 'package:geek_plants/screens/calendar_day_screen/calendar_day_screen.dart';
+import 'package:geek_plants/screens/calendar_screen/calendar_screen_viewmodel.dart';
 import 'package:geek_plants/screens/widgets/calendar.dart';
 import 'package:geek_plants/util/time_formatter.dart';
 import 'package:geek_plants/values/colors.dart';
@@ -9,11 +12,8 @@ import 'package:geek_plants/values/strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarScreen extends StatefulWidget {
-  final Map<DateTime, List<EventType>> eventList;
-
   const CalendarScreen({
     Key key,
-    @required this.eventList,
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class CalendarScreen extends StatefulWidget {
 class _CalendarScreenState extends State<CalendarScreen> {
   final calendarController = CalendarController();
 
-  var currentDate = 'test';
+  final viewModel = CalendarScreenViewModel(calendarInteractor);
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +74,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
       bottom: PreferredSize(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 12.0),
-          child: Text(
-            currentDate,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white.withOpacity(0.2),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          child: StreamBuilder<String>(
+              stream: viewModel.currentDate.stream,
+              builder: (context, snapshot) {
+                return Text(
+                  snapshot.data ?? "",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white.withOpacity(0.2),
+                    fontWeight: FontWeight.w600,
+                  ),
+                );
+              }),
         ),
         preferredSize: Size(0, 20),
       ),
@@ -91,19 +95,37 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget _buildCalendar() {
     return Container(
       color: calendarBackgroundColor,
-      child: Calendar(
-        updateDate: (dateTime) async {
-          await Future.delayed(Duration(milliseconds: 5));
-          setState(() {
-            currentDate = getStringFromDateTime(dateTime);
-          });
-        },
-        onDaySelected: (day, events, holidays) {},
-        calendarType: CalendarType.expand,
-        calendarController: calendarController,
-        events: widget.eventList,
+      child: StreamBuilder<Map<DateTime, List<Event>>>(
+          stream: viewModel.events.stream,
+          initialData: viewModel.calendarInteractor.getAllEvents(),
+          builder: (context, snapshot) {
+            return Calendar(
+              updateDate: (dateTime) async {
+                await Future.delayed(Duration(milliseconds: 5));
+                viewModel.initDate(getStringFromDateTime(dateTime));
+              },
+              onDaySelected: (day, events, holidays) {
+                if (events.isNotEmpty) {
+                  _goToDayScreen(day);
+                }
+              },
+              calendarType: CalendarType.expand,
+              calendarController: calendarController,
+              events: snapshot.data,
+            );
+          }),
+    );
+  }
+
+  _goToDayScreen(DateTime day) async {
+    await Navigator.of(context).push(
+      CupertinoPageRoute(
+        builder: (context) => CalendarDayScreen(
+          day: day,
+        ),
       ),
     );
+    viewModel.initEvents();
   }
 
   Widget _buildFAB() {

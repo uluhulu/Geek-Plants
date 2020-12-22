@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/util/time_formatter.dart';
 import 'package:geek_plants/values/colors.dart';
 import 'package:geek_plants/values/strings.dart';
+import 'package:intl/intl.dart';
 
 class DayPanel extends SliverPersistentHeaderDelegate {
   final int taskCount;
+  final DateTime day;
 
   DayPanel({
     @required this.taskCount,
+    @required this.day,
   });
 
   @override
@@ -36,7 +40,7 @@ class DayPanel extends SliverPersistentHeaderDelegate {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            DateTime.now().day.toString(),
+            day.day.toString(),
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -44,7 +48,7 @@ class DayPanel extends SliverPersistentHeaderDelegate {
             ),
           ),
           Text(
-            'мая',
+            getMonthName(day.month),
             style: TextStyle(
               color: Colors.white.withOpacity(0.3),
               fontWeight: FontWeight.w500,

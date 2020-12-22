@@ -2,19 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_viewmodel.dart';
 import 'package:geek_plants/screens/widgets/plant_card.dart';
 
 class GroupedList extends StatelessWidget {
   final List<Plant> plantsList;
   final List<Plant> myPlantsList;
   final List<String> cached = [];
-  final VoidCallback addCallback;
+  final AllPlantsViewModel viewModel;
 
   GroupedList({
     Key key,
     @required this.plantsList,
     @required this.myPlantsList,
-    @required this.addCallback,
+    @required this.viewModel,
   }) : super(key: key);
 
   @override
@@ -87,7 +88,7 @@ class GroupedList extends StatelessWidget {
             PlantCard(
               plant: list[i],
               myPlantsList: myPlantsList,
-              addCallback: addCallback,
+              viewModel: viewModel,
             )
         ],
       ),

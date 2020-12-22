@@ -9,12 +9,23 @@ enum EventType {
 }
 
 class Event {
+  final int id;
   final EventType type;
   final DateTime time;
 
+  final int plantId;
+  final String plantName;
+  final String plantImage;
+
+  var isDone = false;
+
   Event({
+    @required this.id,
     @required this.type,
     @required this.time,
+    @required this.plantId,
+    @required this.plantName,
+    @required this.plantImage,
   });
 }
 
