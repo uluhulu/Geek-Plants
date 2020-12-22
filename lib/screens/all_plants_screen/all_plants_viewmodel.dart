@@ -3,14 +3,16 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:geek_plants/data/interactor/plants_interactor.dart';
 import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/di.dart';
 import 'package:geek_plants/values/mocks.dart';
 
 class AllPlantsViewModel {
   final PlantsInteractor interactor;
 
-  final StreamController<List<Plant>> plantsController = StreamController();
-  final StreamController<List<Plant>> myPlantsController =
+  final StreamController<List<Plant>> plantsController =
       StreamController.broadcast();
+
+  var currentCategory = categories[0];
 
   AllPlantsViewModel({
     @required this.interactor,
@@ -18,17 +20,15 @@ class AllPlantsViewModel {
 
   void init() {
     loadPlantList();
-    getMyPlants();
   }
 
   void dispose() {
     plantsController.close();
-    myPlantsController.close();
   }
 
   void loadPlantList() async {
     await Future.delayed(Duration(seconds: 1));
-    plantsController.add(interactor.getAllPlants());
+    plantsController.add(interactor.allPlants);
   }
 
   void searchPlants(String name) async {
@@ -43,22 +43,31 @@ class AllPlantsViewModel {
   }
 
   void filterPlants(String category) {
-
-    if (category == categories[0]) {
-      plantsController.add(interactor.getAllPlants());
-      getMyPlants();
+    currentCategory = category;
+    if (currentCategory == categories[0]) {
+      plantsController.add(interactor.allPlants);
       return;
     }
     final filteredPlants = interactor.filterPlants(category);
     if (filteredPlants.isNotEmpty) {
       plantsController.add(filteredPlants);
-      getMyPlants();
       return;
     }
     plantsController.addError("Растений с такой категорией не найдено");
   }
 
-  void getMyPlants() {
-    myPlantsController.add(interactor.getMyPlants());
+  void addToMy(Plant plant) {
+    plantsInteractor.addPlantsToMy(plant);
+
+    if (currentCategory != categories[0]) return filterPlants(plant.category);
+    plantsController.add(interactor.allPlants);
   }
+
+  void removeFromMy(Plant plant) {
+    plantsInteractor.removeFromMy(plant);
+
+    if (currentCategory != categories[0]) return filterPlants(plant.category);
+    plantsController.add(interactor.allPlants);
+  }
+
 }

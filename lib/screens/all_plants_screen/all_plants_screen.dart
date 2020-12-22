@@ -50,40 +50,37 @@ class _AllPlantsScreenState extends State<AllPlantsScreen> {
                       searchItems: viewModel.searchPlants,
                       choseCategory: viewModel.filterPlants,
                     ),
-                    StreamBuilder<List<Plant>>(
-                      stream: viewModel.myPlantsController.stream,
-                      builder: (
-                        BuildContext context,
-                        AsyncSnapshot<List<Plant>> myPlantsSnapshot,
-                      ) {
-                        return plantsSnapshot.hasError
-                            ? SliverFillRemaining(
-                                child: Center(
-                                  child: Text(
-                                    plantsSnapshot.error,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        Theme.of(context).textTheme.headline4,
-                                  ),
-                                ),
+                    plantsSnapshot.hasError
+                        ? SliverFillRemaining(
+                            child: Center(
+                              child: Text(
+                                plantsSnapshot.error,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline4,
+                              ),
+                            ),
+                          )
+                        : plantsSnapshot.data != null
+                            ? GroupedList(
+                                plantsList: plantsSnapshot.data,
+                                myPlantsList: plantsSnapshot.data ?? [],
+                                viewModel: viewModel,
                               )
-                            : plantsSnapshot.data != null
-                                ? GroupedList(
-                                    plantsList: plantsSnapshot.data,
-                                    myPlantsList: myPlantsSnapshot.data ?? [],
-                                    addCallback: viewModel.getMyPlants,
-                                  )
-                                : PlantsListLoader();
-                      },
-                    ),
+                            : PlantsListLoader(),
                   ],
                 ),
                 StreamBuilder<List<Plant>>(
-                  stream: viewModel.myPlantsController.stream,
+                  stream: viewModel.plantsController.stream,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Plant>> snapshot) {
-                    if (snapshot.data != null && snapshot.data.isNotEmpty) {
-                      return BottomBanner(plantsCount: snapshot.data.length);
+                    final myList = snapshot?.data
+                        ?.where((element) => element.isSelected)
+                        ?.toList();
+                    if (myList != null && myList.isNotEmpty) {
+                      return BottomBanner(
+                        myPlants: myList,
+                        viewModel: viewModel,
+                      );
                     }
                     return Container();
                   },

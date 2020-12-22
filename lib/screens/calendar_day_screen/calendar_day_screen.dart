@@ -1,12 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/di.dart';
+import 'package:geek_plants/screens/calendar_day_screen/calendar_day_viewmodel.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/day_panel.dart';
 import 'package:geek_plants/screens/calendar_day_screen/widget/task_item/task_item.dart';
 import 'package:geek_plants/values/mocks.dart';
 import 'package:geek_plants/values/strings.dart';
 
 class CalendarDayScreen extends StatefulWidget {
+  final DateTime day;
+
+  const CalendarDayScreen({
+    Key key,
+    this.day,
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CalendarDayScreenState();
@@ -14,38 +23,40 @@ class CalendarDayScreen extends StatefulWidget {
 }
 
 class _CalendarDayScreenState extends State<CalendarDayScreen> {
-  final uncompleteTasks = <Event>[
-    Event(
-      type: EventType.transfer,
-      time: DateTime.now(),
-    ),
-    Event(
-      type: EventType.feeding,
-      time: DateTime.now(),
-    ),
-    Event(
-      type: EventType.watering,
-      time: DateTime.now(),
-    ),
-  ];
+  CalendarDayViewModel viewModel;
 
-  final completeTasks = <Event>[];
+  @override
+  void initState() {
+    super.initState();
+    viewModel =
+        CalendarDayViewModel(plantsInteractor, calendarInteractor, widget.day);
+    viewModel.init();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildApppbar(),
-      body: CustomScrollView(
-        physics: AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
-        slivers: [
-          _buildDayPanel(),
-          _buildUncompleteTasks(),
-          _buildCompleteHeader(),
-          _buildCompleteTasks(),
-        ],
-      ),
+      body: StreamBuilder<List<Event>>(
+          stream: viewModel.tasks.stream,
+          builder: (context, snapshot) {
+            var taskList = snapshot.data ?? [];
+            var completeTasks =
+                taskList.where((element) => element.isDone).toList();
+            var uncompleteTasks =
+                taskList.where((element) => !element.isDone).toList();
+            return CustomScrollView(
+              physics: AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
+              slivers: [
+                _buildDayPanel(uncompleteTasks),
+                _buildUncompleteTasks(uncompleteTasks),
+                _buildCompleteHeader(completeTasks),
+                _buildCompleteTasks(completeTasks),
+              ],
+            );
+          }),
     );
   }
 
@@ -62,22 +73,25 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
     );
   }
 
-  Widget _buildDayPanel() {
+  Widget _buildDayPanel(List<Event> uncompleteTasks) {
     return SliverPersistentHeader(
-      delegate: DayPanel(taskCount: 5),
+      delegate: DayPanel(
+        taskCount: uncompleteTasks.length,
+        day: widget.day,
+      ),
       floating: true,
     );
   }
 
-  Widget _buildUncompleteTasks() {
+  Widget _buildUncompleteTasks(List<Event> uncompleteTasks) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           return TaskItem(
             onTap: () {
-              _addToComplete(index);
+              viewModel.addToComplete(uncompleteTasks[index]);
             },
-            // event: uncompleteTasks[index],
+            event: uncompleteTasks[index],
             isSelected: false,
           );
         },
@@ -86,7 +100,7 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
     );
   }
 
-  Widget _buildCompleteHeader() {
+  Widget _buildCompleteHeader(List<Event> completeTasks) {
     if (completeTasks.isNotEmpty) {
       return SliverToBoxAdapter(
         child: Padding(
@@ -104,16 +118,16 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
     return SliverToBoxAdapter();
   }
 
-  Widget _buildCompleteTasks() {
+  Widget _buildCompleteTasks(List<Event> completeTasks) {
     if (completeTasks.isNotEmpty) {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             return TaskItem(
               onTap: () {
-                _removeFromComplete(index);
+                viewModel.removeFromComplete(completeTasks[index]);
               },
-              // event: completeTasks[index],
+              event: completeTasks[index],
               isSelected: true,
             );
           },
@@ -122,19 +136,5 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
       );
     }
     return SliverToBoxAdapter();
-  }
-
-  void _addToComplete(int index) {
-    setState(() {
-      completeTasks.add(uncompleteTasks[index]);
-      uncompleteTasks.removeAt(index);
-    });
-  }
-
-  void _removeFromComplete(int index) {
-    setState(() {
-      uncompleteTasks.add(completeTasks[index]);
-      completeTasks.removeAt(index);
-    });
   }
 }

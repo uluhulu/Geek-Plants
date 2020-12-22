@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_viewmodel.dart';
 import 'package:geek_plants/screens/main_screen/main_screen.dart';
 
 class BottomBanner extends StatelessWidget {
-  final int plantsCount;
+  final List<Plant> myPlants;
+  final AllPlantsViewModel viewModel;
 
   BottomBanner({
     Key key,
-    @required this.plantsCount,
+    @required this.myPlants,
+    @required this.viewModel,
   }) : super(key: key);
 
   @override
@@ -24,7 +28,7 @@ class BottomBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: Text(
-                  'Добавлено: $plantsCount растений',
+                  'Добавлено: ${myPlants.length} растений',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),
                 ),
               ),
