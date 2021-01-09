@@ -5,6 +5,9 @@ final google = "assets/icons/google.png";
 final facebook = "assets/icons/facebook.png";
 
 final abutilonPath = "assets/images/plants/Abutilon.png";
+final rosePath = "assets/images/plants/rose.jpg";
+final agavaPath = "assets/images/plants/agava.jpg";
+final balzPath = "assets/images/plants/balzamin.jpg";
 final testAvatarPath = 'assets/images/test_avatar.png';
 
 ///icons

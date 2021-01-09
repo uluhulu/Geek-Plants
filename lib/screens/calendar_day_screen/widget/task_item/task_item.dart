@@ -73,6 +73,7 @@ class TaskItemState extends State<TaskItem> {
   Widget _buildPlantImage() {
     return Container(
       width: 58,
+      height: 58,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white,
@@ -84,10 +85,12 @@ class TaskItemState extends State<TaskItem> {
         padding: const EdgeInsets.all(5),
         child: Container(
           width: 48,
+          height: 48,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: AssetImage(widget.event.plantImage),
+              image: AssetImage(widget.event.plantImage,),
+              fit: BoxFit.fill
             ),
           ),
         ),

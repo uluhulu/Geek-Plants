@@ -35,76 +35,78 @@ class PlantCardState extends State<PlantCard> {
                 builder: (context) => PlantInformation(plant: widget.plant)),
           );
         },
-        child: Stack(
-          children: <Widget>[
-            _buildPlantImage(widget.plant.photoPath),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white),
-                height: 56,
-                width: 122,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 4.0),
-                      child: Text(
-                        widget.plant.name,
-                        maxLines: 2,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w700,
+        child: Container(
+          child: Stack(
+            children: <Widget>[
+              _buildPlantImage(widget.plant.photoPath),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  height: 56,
+                  width: 122,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, left: 4.0),
+                        child: Text(
+                          widget.plant.name,
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2.0, left: 4.0),
-                      child: Text(
-                        widget.plant.latName,
-                        maxLines: 2,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10.0,
-                          // fontWeight: FontWeight.w700,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0, left: 4.0),
+                        child: Text(
+                          widget.plant.latName,
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10.0,
+                            // fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: FloatingActionButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                mini: true,
-                heroTag: Container(),
-                onPressed: () {
-                  setState(() {
+              Positioned(
+                top: 0,
+                right: 0,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  mini: true,
+                  heroTag: Container(),
+                  onPressed: () {
+                    setState(() {
 
-                    if (widget.plant.isSelected) {
-                      // plantsInteractor.removeFromMy(widget.plant);
-                      widget.viewModel.removeFromMy(widget.plant);
-                    } else {
-                      widget.viewModel.addToMy(widget.plant);
-                      // plantsInteractor.addPlantsToMy(widget.plant);
-                    }
-                  });
-                },
-                child: Icon(
-                  widget.plant.isSelected ? Icons.done : Icons.add,
-                  size: 28,
-                  color: widget.plant.isSelected ? Colors.green : Colors.black,
+                      if (widget.plant.isSelected) {
+                        // plantsInteractor.removeFromMy(widget.plant);
+                        widget.viewModel.removeFromMy(widget.plant);
+                      } else {
+                        widget.viewModel.addToMy(widget.plant);
+                        // plantsInteractor.addPlantsToMy(widget.plant);
+                      }
+                    });
+                  },
+                  child: Icon(
+                    widget.plant.isSelected ? Icons.done : Icons.add,
+                    size: 28,
+                    color: widget.plant.isSelected ? Colors.green : Colors.black,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -113,8 +115,9 @@ class PlantCardState extends State<PlantCard> {
   Widget _buildPlantImage(String path) {
     return Image.asset(
       widget.plant.photoPath,
-      fit: BoxFit.fitWidth,
-      width: 164,
+      fit: BoxFit.fill,
+      width: 156,
+      height: 224,
     );
   }
 }
@@ -139,50 +142,43 @@ class PlantCardMainScreen extends StatelessWidget {
           );
         },
         child: Stack(
-          // alignment: Alignment.center,
           children: <Widget>[
-            Ink(child: _buildPlantImage(plant.photoPath)),
-            Padding(
-              padding: const EdgeInsets.only(top: 180.0, right: 42),
+            _buildPlantImage(plant.photoPath),
+            Positioned(
+              bottom: 70,
               child: Container(
                 decoration: BoxDecoration(color: Colors.white),
-                alignment: Alignment.bottomCenter,
                 height: 56,
                 width: 122,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 4.0),
-                        child: Text(
-                          plant.name,
-                          maxLines: 2,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w700,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 4.0),
+                      child: Text(
+                       plant.name,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, left: 4.0),
-                        child: Text(
-                          plant.latName,
-                          maxLines: 2,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10.0,
-                            // fontWeight: FontWeight.w700,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0, left: 4.0),
+                      child: Text(
+                        plant.latName,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 10.0,
+                          // fontWeight: FontWeight.w700,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -196,8 +192,9 @@ class PlantCardMainScreen extends StatelessWidget {
   Widget _buildPlantImage(String path) {
     return Image.asset(
       plant.photoPath,
-      fit: BoxFit.fitWidth,
-      width: 164,
+      fit: BoxFit.fill,
+      width: 156,
+      height: 224,
     );
   }
 }

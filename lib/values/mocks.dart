@@ -43,7 +43,7 @@ List<Plant> plantList = [
       id: 1,
       name: "Агава",
       latName: "лат.Agave",
-      photoPath: abutilonPath,
+      photoPath: agavaPath,
       events: [
         Event(
           id: 0,
@@ -51,7 +51,7 @@ List<Plant> plantList = [
           time: testTime,
           plantId: 1,
           plantName: "Агава",
-          plantImage: abutilonPath,
+          plantImage: agavaPath,
         ),
         Event(
           id: 1,
@@ -59,16 +59,43 @@ List<Plant> plantList = [
           time: testTime.add(Duration(days: 1)),
           plantId: 1,
           plantName: "Агава",
-          plantImage: abutilonPath,
+          plantImage: agavaPath,
         ),
       ],
       description:
           "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва)."),
   Plant(
+    id: 3,
+    name: "Бальзамин",
+    latName: "лат.Balzamin",
+    photoPath: balzPath,
+    category: categories[3],
+    events: [
+      Event(
+        id: 0,
+        type: EventType.transfer,
+        time: testTime.add(Duration(days: 4)),
+        plantId: 3,
+        plantName: "Бальзамин",
+        plantImage: balzPath,
+      ),
+      Event(
+        id: 1,
+        type: EventType.transfer,
+        time: testTime.add(Duration(days: 5)),
+        plantId: 3,
+        plantName: "Бальзамин",
+        plantImage: balzPath,
+      ),
+    ],
+    description:
+        "Бальзамин -  род цветковых растений семейства Бальзаминовые. Род включает около 500 видов, широко распространённых в Северном полушарии и тропиках",
+  ),
+  Plant(
     id: 2,
-    name: "Анал",
-    latName: "лат.Impatience",
-    photoPath: abutilonPath,
+    name: "Роза",
+    latName: "лат.Rose",
+    photoPath: rosePath,
     category: categories[3],
     events: [
       Event(
@@ -76,21 +103,11 @@ List<Plant> plantList = [
         type: EventType.wetting,
         time: testTime.add(Duration(days: 1)),
         plantId: 2,
-        plantName: "Анал",
-        plantImage: abutilonPath,
+        plantName: "Роза",
+        plantImage: rosePath,
       ),
     ],
     description:
-        "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва).",
-  ),
-  Plant(
-    id: 3,
-    name: "Бальзамин",
-    latName: "лат.Impatience",
-    photoPath: abutilonPath,
-    category: categories[3],
-    events: [],
-    description:
-        "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва).",
+    "Ро́за — собирательное название видов и сортов представителей рода Шиповник (лат. Rósa), выращиваемых человеком. Большая часть сортов роз получена в результате длительной селекции путём многократных повторных скрещиваний и отбора. Некоторые сорта являются формами дикорастущих видов.",
   ),
 ];
