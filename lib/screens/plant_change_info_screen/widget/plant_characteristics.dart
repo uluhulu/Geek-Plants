@@ -9,7 +9,7 @@ class PlantCharacteristics extends StatelessWidget {
 
   Widget _buildPlantsCharacteristics() {
     return Padding(
-      padding: const EdgeInsets.only(left: 19.0, bottom: 63.0),
+      padding: const EdgeInsets.only(left: 19.0, bottom: 63.0, top: 63),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

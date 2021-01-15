@@ -1,18 +1,27 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/widget/expandable_care_card/expandable_care_card_viewmodel.dart';
 import 'package:geek_plants/screens/widgets/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:geek_plants/util/time_formatter.dart';
 
-
 class ExpandableCareCard extends StatefulWidget {
   final String title;
   final String values;
+  final Function() onDaySelected;
+  final Plant plant;
+  final EventType eventType;
 
-  const ExpandableCareCard({Key key, this.title, this.values,}) : super(key: key);
-
-
-  
+  ExpandableCareCard({
+    Key key,
+    this.title,
+    this.values,
+    this.onDaySelected,
+    this.plant,
+    this.eventType,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -25,13 +34,15 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
   final calendarController = CalendarController();
   var currentDate = 'test';
 
-
   ExpandableController controller = ExpandableController();
+
+  ExpandableCareCardViewModel viewModel;
 
   @override
   void initState() {
     super.initState();
     selectedValue = widget.values;
+    viewModel = ExpandableCareCardViewModel(widget.plant);
   }
 
   @override
@@ -42,7 +53,7 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
         scrollOnCollapse: false,
         child: ExpandablePanel(
           controller: controller,
-          theme:  ExpandableThemeData(
+          theme: ExpandableThemeData(
             headerAlignment: ExpandablePanelHeaderAlignment.center,
             tapBodyToCollapse: true,
             iconColor: Colors.black.withOpacity(0.4),
@@ -73,19 +84,33 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
             ),
           ),
           expanded: Container(
-            color: Colors.black,
+            color: Colors.white,
             height: 522,
-            child: Calendar(
-              updateDate: (dateTime) async {
-                await Future.delayed(Duration(milliseconds: 5));
-                setState(() {
-                  currentDate = getStringFromDateTime(dateTime);
-                });
+            child: StreamBuilder<Map<DateTime, List<Event>>>(
+              initialData: {},
+              stream: viewModel.plantEvents.stream,
+              builder: (context, data) {
+                return Calendar(
+                  updateDate: (dateTime) async {
+                    await Future.delayed(Duration(milliseconds: 5));
+                    setState(() {
+                      currentDate = getStringFromDateTime(dateTime);
+                    });
+                  },
+                  onDaySelected: (day, events, holidays) {
+                    viewModel.handlePlantEvents(
+                      day,
+                      widget.eventType,
+                    );
+                    widget.onDaySelected();
+                  },
+                  calendarType: CalendarType.expand,
+                  calendarController: calendarController,
+                  events: data.data,
+                  weekDayColor: Colors.black,
+                  todayColor: Colors.green.shade50,
+                );
               },
-              onDaySelected: (day, events, holidays) {},
-              calendarType: CalendarType.expand,
-              calendarController: calendarController,
-              // events: widget.eventList,
             ),
           ),
           builder: (_, collapsed, expanded) {
@@ -107,5 +132,4 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
       ),
     );
   }
-
 }

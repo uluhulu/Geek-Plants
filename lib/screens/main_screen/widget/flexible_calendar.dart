@@ -27,6 +27,7 @@ class FlexibleCalendar extends StatelessWidget {
             stream: viewModel.events.stream,
             builder: (context, snapshot) {
               return Container(
+                // height: 500,
                 color: appBarColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

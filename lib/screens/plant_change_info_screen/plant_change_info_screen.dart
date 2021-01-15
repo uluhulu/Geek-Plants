@@ -4,26 +4,22 @@ import 'package:geek_plants/screens/plant_change_info_screen/widget/cancel_butto
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_add_photo.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_care.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_characteristics.dart';
-import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_cover.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_cover/plant_cover.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_name.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/save_button.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/title.dart';
-import 'package:geek_plants/screens/widgets/black_button.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
 class PlantChangeInfo extends StatefulWidget {
-  Plant plant = Plant(
-      name: "Абутилон (Катаника)",
-      latName: "лат.Abutilon",
-      photoPath: abutilonPath,
-      description:
-          "Абутилон — это неприхотливое и обильноцветущее комнатное растение. Это растение относится к семейству мальвовые. Его ближайшие «родственники» — гибискус и всем известная садовая шток-роза (мальва).");
+  Plant plant;
+  PlantChangeInfo({@required this.plant});
 
   @override
   _PlantChangeInfoState createState() => _PlantChangeInfoState();
 }
 
 class _PlantChangeInfoState extends State<PlantChangeInfo> {
+  Plant plant = new Plant(events: []);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +45,9 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
             PlantCover(photoPath: widget.plant.photoPath),
             _buildSeparator(),
             PlantName(),
-            PlantAddPhoto(),
+            // PlantAddPhoto(),
             PlantCharacteristics(),
-            PlantCareCharacteristics(),
+            PlantCareCharacteristics(plant: plant),
             Center(child: SaveButton()),
             Center(child: CancelButton()),
           ],

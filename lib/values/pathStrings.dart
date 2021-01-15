@@ -5,9 +5,12 @@ final google = "assets/icons/google.png";
 final facebook = "assets/icons/facebook.png";
 
 final abutilonPath = "assets/images/plants/Abutilon.png";
-final rosePath = "assets/images/plants/rose.jpg";
-final agavaPath = "assets/images/plants/agava.jpg";
-final balzPath = "assets/images/plants/balzamin.jpg";
+final rosePath = "assets/images/plants/Rose1.jpg";
+final agavaPath = "assets/images/plants/Agava1.jpg";
+final balzPath = "assets/images/plants/Balzamin1.jpg";
+final bifrenariaPath = "assets/images/plants/Bifrenaria1.jpg";
+final pionPath = "assets/images/plants/Pion1.jpg";
+final gauraPath = "assets/images/plants/Gaura1.jpg";
 final testAvatarPath = 'assets/images/test_avatar.png';
 
 ///icons

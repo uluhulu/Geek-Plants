@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.grey,
       ),
       // home: MainScreen(),
-      home: AuthScreen(),
+      // home: AuthScreen(),
       // home: PlantInformation(plant: plantList[0],),
-      // home: PlantChangeInfo(),
+      home: AuthScreen(),
     );
   }
 }

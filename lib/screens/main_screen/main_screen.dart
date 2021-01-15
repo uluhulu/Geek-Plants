@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/di.dart';
 import 'package:geek_plants/screens/all_plants_screen/all_plants_screen.dart';
 import 'package:geek_plants/screens/main_screen/main_screen_viewmodel.dart';
@@ -45,10 +46,20 @@ class _MainScreenState extends State<MainScreen> {
           FlexibleCalendar(
             viewModel: viewModel,
           ),
-          PlantListHeader(),
-          PlantsList(
-            viewModel: viewModel,
-          ),
+          StreamBuilder<List<Plant>>(
+              stream: viewModel.myPlants.stream,
+              builder: (context, snapshot) {
+                return PlantListHeader(
+                  plants: snapshot.data ?? [],
+                );
+              }),
+          StreamBuilder<List<Plant>>(
+              stream: viewModel.myPlants2.stream,
+              builder: (context, snapshot) {
+                return PlantsList(
+                  plants: snapshot.data ?? [],
+                );
+              }),
         ],
       ),
       bottomNavigationBar: BottomMenu(),

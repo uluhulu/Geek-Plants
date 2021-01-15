@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/data/model/plant.dart';
 
-import 'expandable_care_card.dart';
+import 'expandable_care_card/expandable_care_card.dart';
 
 class PlantCareCharacteristics extends StatelessWidget {
+  final Plant plant;
+
+  const PlantCareCharacteristics({
+    Key key,
+    this.plant,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return _buildPlantCareCharacteristics();
@@ -25,13 +34,45 @@ class PlantCareCharacteristics extends StatelessWidget {
             ),
           ),
           _buildSeparator(),
-          ExpandableCareCard(title: "Полив", values: "АВП", ),
+          ExpandableCareCard(
+            title: "Полив",
+            values: "АВП",
+            plant: plant,
+            eventType: EventType.watering,
+            onDaySelected: (){
+              print("events ${plant.events}");
+            },
+          ),
           _buildSeparator(),
-          _buildPlantHydration(),
+          ExpandableCareCard(
+            title: "Увлажнение",
+            values: "Стандартная настройка",
+            plant: plant,
+            eventType: EventType.wetting,
+            onDaySelected: (){
+              print("events ${plant.events}");
+            },
+          ),
           _buildSeparator(),
-          _buildPlantFeeding(),
+          ExpandableCareCard(
+            title: "Подкормка",
+            values: "Стандартная настройка",
+            plant: plant,
+            eventType: EventType.feeding,
+            onDaySelected: (){
+              print("events ${plant.events}");
+            },
+          ),
           _buildSeparator(),
-          _buildPlantTransplanting(),
+          ExpandableCareCard(
+            title: "Пересадка",
+            values: "Стандартная настройка",
+            plant: plant,
+            eventType: EventType.transfer,
+            onDaySelected: (){
+              print("events ${plant.events}");
+            },
+          ),
         ],
       ),
     );

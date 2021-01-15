@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geek_plants/values/pathStrings.dart';
 
 class BottomMenu extends StatelessWidget {
-  var selectedItem = 0;
+  var selectedItem = 2;
 
   @override
   Widget build(BuildContext context) {

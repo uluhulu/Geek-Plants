@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_screen.dart';
 import 'package:geek_plants/screens/plant_information_screen/widget/expandable_info_card.dart';
 import 'package:geek_plants/values/strings.dart';
 
@@ -56,7 +57,9 @@ class _PlantInformationState extends State<PlantInformation> {
           height: 50,
           child: RaisedButton(
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.horizontal(
               right: Radius.circular(29.0),
@@ -78,7 +81,13 @@ class _PlantInformationState extends State<PlantInformation> {
           height: 50,
           child: RaisedButton(
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PlantChangeInfo(plant: widget.plant)),
+              );
+            },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.horizontal(
               left: Radius.circular(29.0),

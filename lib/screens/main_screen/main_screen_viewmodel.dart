@@ -11,6 +11,7 @@ class MainScreenViewModel {
   final CalendarInteractor calendarInteractor;
 
   final StreamController<List<Plant>> myPlants = StreamController();
+  final StreamController<List<Plant>> myPlants2 = StreamController();
   final StreamController<Map<DateTime, List<Event>>> events =
       StreamController();
 
@@ -21,6 +22,7 @@ class MainScreenViewModel {
 
   void dispose() {
     myPlants.close();
+    myPlants2.close();
     events.close();
   }
 
@@ -36,6 +38,7 @@ class MainScreenViewModel {
 
   void initPlants() {
     myPlants.add(plantsInteractor.getMyPlants());
+    myPlants2.add(plantsInteractor.getMyPlants());
   }
 
   List<Event>getEventsByDay(DateTime dateTime){

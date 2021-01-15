@@ -16,6 +16,10 @@ class Calendar extends StatelessWidget {
   final OnDaySelected onDaySelected;
   final Function(DateTime date) updateDate;
   final CalendarController calendarController;
+  final CalendarStyle calendarStyle;
+  final Color weekDayColor;
+  final Color selectedColor;
+  final Color todayColor;
 
   Calendar({
     this.events,
@@ -23,6 +27,10 @@ class Calendar extends StatelessWidget {
     this.onDaySelected,
     @required this.calendarController,
     this.updateDate,
+    this.calendarStyle,
+    this.weekDayColor = Colors.white,
+    this.selectedColor = Colors.grey,
+    this.todayColor = Colors.white,
   });
 
   @override
@@ -36,20 +44,20 @@ class Calendar extends StatelessWidget {
           ? CalendarFormat.week
           : CalendarFormat.month,
       daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: TextStyle(color: Colors.white),
+        weekdayStyle: TextStyle(color: weekDayColor),
         weekendStyle: TextStyle(color: Colors.grey),
       ),
       calendarStyle: CalendarStyle(
-        selectedColor: Colors.grey,
-        todayColor: Colors.white,
+        selectedColor: selectedColor,
+        todayColor: todayColor,
         todayStyle: TextStyle(color: Colors.black),
         markersColor: Colors.blue,
         outsideDaysVisible: false,
         outsideStyle: TextStyle(color: Colors.white),
-        weekdayStyle: TextStyle(color: Colors.white),
+        weekdayStyle: TextStyle(color: weekDayColor),
         weekendStyle: TextStyle(color: Colors.grey),
-        unavailableStyle: TextStyle(color: Colors.white),
-        eventDayStyle: TextStyle(color: Colors.white),
+        unavailableStyle: TextStyle(color: weekDayColor),
+        eventDayStyle: TextStyle(color: weekDayColor),
         contentDecoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(

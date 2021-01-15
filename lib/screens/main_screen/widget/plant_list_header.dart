@@ -1,18 +1,27 @@
 import 'package:flutter/cupertino.dart';
+import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/main_screen/main_screen_viewmodel.dart';
 
 class PlantListHeader extends StatelessWidget {
+  final List<Plant> plants;
+
+  const PlantListHeader({Key key, this.plants}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       floating: true,
       pinned: false,
-      delegate: PlantsListHeaderDelegate(),
+      delegate: PlantsListHeaderDelegate(plants),
     );
   }
-
 }
 
 class PlantsListHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final List<Plant> plants;
+
+  PlantsListHeaderDelegate(this.plants);
+
   @override
   Widget build(
     BuildContext context,
@@ -43,7 +52,7 @@ class PlantsListHeaderDelegate extends SliverPersistentHeaderDelegate {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 11.0, left: 19),
                   child: Text(
-                    "3 растения",
+                    "${plants?.length ?? 0} растения",
                     style: TextStyle(
                       color: Color.fromRGBO(74, 171, 66, 1),
                       fontSize: 16,
