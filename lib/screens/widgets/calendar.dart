@@ -20,6 +20,7 @@ class Calendar extends StatelessWidget {
   final Color weekDayColor;
   final Color selectedColor;
   final Color todayColor;
+  final int rowHeight;
 
   Calendar({
     this.events,
@@ -31,6 +32,7 @@ class Calendar extends StatelessWidget {
     this.weekDayColor = Colors.white,
     this.selectedColor = Colors.grey,
     this.todayColor = Colors.white,
+    this.rowHeight = 8,
   });
 
   @override
@@ -87,7 +89,7 @@ class Calendar extends StatelessWidget {
       },
       rowHeight: calendarType == CalendarType.collapse
           ? 74
-          : MediaQuery.of(context).size.height / 8,
+          : MediaQuery.of(context).size.height / rowHeight,
       headerVisible: false,
       onDaySelected: onDaySelected,
     );

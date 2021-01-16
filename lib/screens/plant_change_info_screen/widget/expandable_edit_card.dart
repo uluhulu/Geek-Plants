@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class ExpandableCharCard extends StatefulWidget {
   final String title;
+  final String initialValue;
   final List<String> values;
   final Function(String selectedValue) onSelect;
 
@@ -12,6 +13,7 @@ class ExpandableCharCard extends StatefulWidget {
     this.title,
     this.values,
     this.onSelect,
+    this.initialValue,
   }) : super(key: key);
 
   @override
@@ -24,10 +26,11 @@ class ExpandableCharCardState extends State<ExpandableCharCard> {
   String selectedValue;
 
   ExpandableController controller = ExpandableController();
+
   @override
   void initState() {
     super.initState();
-    selectedValue = widget.values[0];
+    selectedValue = widget.initialValue;
   }
 
   @override
@@ -38,7 +41,7 @@ class ExpandableCharCardState extends State<ExpandableCharCard> {
         scrollOnCollapse: false,
         child: ExpandablePanel(
           controller: controller,
-          theme:  ExpandableThemeData(
+          theme: ExpandableThemeData(
             headerAlignment: ExpandablePanelHeaderAlignment.center,
             tapBodyToCollapse: true,
             iconColor: Colors.black.withOpacity(0.4),

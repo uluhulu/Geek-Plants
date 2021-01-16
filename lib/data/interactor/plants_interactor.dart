@@ -23,6 +23,11 @@ class PlantsInteractor {
 
   void addPlantsToAll(Plant plant) => allPlants.add(plant);
 
+  void updateMyPlant(Plant plant) {
+    allPlants[allPlants.indexWhere((element) => element.id == plant.id)] =
+        plant;
+  }
+
   void addPlantsToMy(Plant plant) {
     allPlants[allPlants.indexWhere((element) => element.id == plant.id)]
         .isSelected = true;

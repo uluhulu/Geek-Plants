@@ -43,7 +43,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
       centerTitle: true,
       shadowColor: Colors.transparent,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         icon: Icon(
           Icons.arrow_back_ios,
           color: Colors.white.withOpacity(0.3),

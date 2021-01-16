@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SaveButton extends StatelessWidget {
+  final Function() onPressed;
+
+  const SaveButton({
+    Key key,
+    this.onPressed,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +25,7 @@ class SaveButton extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
       ),
     );
   }

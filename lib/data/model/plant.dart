@@ -7,6 +7,11 @@ class Plant {
   final String photoPath;
   final String description;
   final String category;
+  final String age;
+  final String size;
+  final String volume;
+  final String lighting;
+  final String placement;
 
   final List<Event> events;
 
@@ -19,6 +24,12 @@ class Plant {
     this.photoPath,
     this.description,
     this.category,
+    this.age,
+    this.size,
+    this.volume,
+    this.lighting,
+    this.placement,
     this.events,
+    this.isSelected = false,
   });
 }

@@ -1,13 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geek_plants/data/model/plant.dart';
 
-class PlantName extends StatelessWidget {
-  final String plantName;
+class DescriptionTextField extends StatelessWidget{
+  final String description;
   final Function(String name) onChanged;
 
-  const PlantName({
+  const DescriptionTextField({
     Key key,
-    this.plantName,
+    this.description,
     this.onChanged,
   }) : super(key: key);
 
@@ -18,8 +18,10 @@ class PlantName extends StatelessWidget {
       child: TextField(
         autofocus: false,
         onChanged: onChanged,
+        maxLines: 6,
+        controller: TextEditingController(text: description),
         decoration: InputDecoration(
-          labelText: plantName,
+          labelText: "Описание",
           labelStyle: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w300,

@@ -1,22 +1,49 @@
 import 'dart:async';
 
 import 'package:geek_plants/data/model/event_old.dart';
-import 'package:geek_plants/data/model/plant.dart';
 
 class ExpandableCareCardViewModel {
-  final Plant plant;
+  final List<Event> events;
+  final String plantName;
+  final String photoPath;
+  final int plantId;
+  final EventType type;
   final eventsMap = <DateTime, List<Event>>{};
   final plantEvents = StreamController<Map<DateTime, List<Event>>>();
 
-  var id = 0;
+  ExpandableCareCardViewModel(
+    this.events,
+    this.type,
+    this.plantName,
+    this.photoPath,
+    this.plantId,
+  ) {
+    initEvents();
+  }
 
-  ExpandableCareCardViewModel(this.plant);
+  void initEvents() {
+    if (events != null)
+      events.forEach((event) {
+        var time = event.time;
+        if (!eventsMap.containsKey(time)) {
+          var key = time;
+          List<Event> values = [];
+          events.forEach((e) {
+            if (event.time == key && event.type == type) {
+              values.add(event);
+            }
+          });
+          eventsMap[key] = values;
+        }
+      });
+    plantEvents.add(eventsMap);
+  }
 
   void handlePlantEvents(DateTime day, EventType type) {
-    if (plant.events.isNotEmpty) {
+    if (events.isNotEmpty) {
       Event plantEvent;
-      plant.events.forEach((element) {
-        if(element.time == day){
+      events.forEach((element) {
+        if (element.time == day && element.type == type) {
           plantEvent = element;
         }
       });
@@ -35,22 +62,20 @@ class ExpandableCareCardViewModel {
 
   void addEvent(EventType type, DateTime time) {
     final event = Event(
-      id: id,
+      id: events.length,
       type: type,
       time: time,
-      plantId: plant.id,
-      plantName: plant.name,
-      plantImage: plant.photoPath,
+      plantId: plantId,
+      plantName: plantName,
+      plantImage: photoPath,
     );
-    plant.events.add(event);
+    events.add(event);
     eventsMap[time] = [event];
-    id++;
   }
 
   void removeEvent(Event event, DateTime time) {
-    plant.events.remove(event);
+    events.remove(event);
     eventsMap.remove(time);
-    id--;
   }
 
   void dispose() {

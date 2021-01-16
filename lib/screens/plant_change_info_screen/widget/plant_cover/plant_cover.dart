@@ -7,8 +7,13 @@ import 'package:image_picker/image_picker.dart';
 
 class PlantCover extends StatefulWidget {
   final String photoPath;
+  final Function(String path) onPhotoSelect;
 
-  const PlantCover({Key key, this.photoPath}) : super(key: key);
+  const PlantCover({
+    Key key,
+    this.photoPath,
+    this.onPhotoSelect,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -17,7 +22,14 @@ class PlantCover extends StatefulWidget {
 }
 
 class PlantCoverState extends State<PlantCover> {
-  final PlantCoverViewModel viewModel = PlantCoverViewModel();
+  PlantCoverViewModel viewModel;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel = PlantCoverViewModel(widget.onPhotoSelect);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +37,6 @@ class PlantCoverState extends State<PlantCover> {
   }
 
   Widget _buildPlantCover() {
-    File _image;
     return Padding(
       padding: const EdgeInsets.only(
           left: 19.0, top: 19.0, bottom: 19.0, right: 15.0),
@@ -40,7 +51,7 @@ class PlantCoverState extends State<PlantCover> {
               CupertinoActionSheetAction(
                 child: Text("Камера"),
                 isDefaultAction: true,
-                onPressed: () async{
+                onPressed: () async {
                   await viewModel.getImage(ImageSource.camera);
                   Navigator.pop(context);
                 },
@@ -48,9 +59,9 @@ class PlantCoverState extends State<PlantCover> {
               CupertinoActionSheetAction(
                 child: Text("Галлерея"),
                 isDefaultAction: true,
-                onPressed: () async{
+                onPressed: () async {
                   Navigator.pop(context);
-                 await viewModel.getImage(ImageSource.gallery);
+                  await viewModel.getImage(ImageSource.gallery);
                 },
               )
             ],

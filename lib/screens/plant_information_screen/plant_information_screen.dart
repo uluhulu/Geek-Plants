@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_screen.dart';
+import 'package:geek_plants/screens/plant_information_screen/widget/card_calendar.dart';
 import 'package:geek_plants/screens/plant_information_screen/widget/expandable_info_card.dart';
-import 'package:geek_plants/values/strings.dart';
 
 class PlantInformation extends StatefulWidget {
-  Plant plant;
+  final Plant plant;
 
   PlantInformation({@required this.plant});
 
@@ -25,7 +26,7 @@ class _PlantInformationState extends State<PlantInformation> {
               children: [
                 _buildPlantImage(widget.plant.photoPath),
                 _buildBackButton(),
-                _buildSettingsButton(),
+                if (widget.plant.isSelected) _buildSettingsButton(),
                 _buildNameCard(widget.plant),
               ],
             ),
@@ -169,8 +170,6 @@ class _PlantInformationState extends State<PlantInformation> {
         height: 342,
         child: ListView(
           scrollDirection: Axis.horizontal,
-          // shrinkWrap: true,
-          // physics: NeverScrollableScrollPhysics(),
           children: [
             _buildWateringCard(),
             _buildMoisteningCard(),
@@ -183,235 +182,38 @@ class _PlantInformationState extends State<PlantInformation> {
   }
 
   Widget _buildWateringCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        width: 234,
-        height: 300,
-        child: Card(
-          child: Column(
-            children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 26),
-                    child: Row(children: [
-                      Text(
-                        "Полив",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/vector/wector_watering.png",
-                        width: 13,
-                        height: 16.9,
-                      ),
-                    ]),
-                  )),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
-                child: Text(
-                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
-                child: Text(
-                  "Последний полив 20 января",
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CardCalendar(
+      title: "Полив",
+      image: "assets/vector/wector_watering.png",
+      events: widget.plant.events,
+      type: EventType.watering,
     );
   }
 
   Widget _buildMoisteningCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        width: 234,
-        height: 300,
-        child: Card(
-          child: Column(
-            children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 26),
-                    child: Row(children: [
-                      Text(
-                        "Увлажнение",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/vector/vector_moistening.png",
-                        width: 13,
-                        height: 16.9,
-                      ),
-                    ]),
-                  )),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
-                child: Text(
-                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
-                child: Text(
-                  "Последнее увлажнение 18 января",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CardCalendar(
+      title: "Увлажнение",
+      image: "assets/vector/vector_moistening.png",
+      events: widget.plant.events,
+      type: EventType.wetting,
     );
   }
 
   Widget _buildFeedingCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        width: 234,
-        height: 300,
-        child: Card(
-          child: Column(
-            children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 26),
-                    child: Row(children: [
-                      Text(
-                        "Подкормка",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/vector/vector_feeding.png",
-                        width: 13,
-                        height: 16.9,
-                      ),
-                    ]),
-                  )),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
-                child: Text(
-                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
-                child: Text(
-                  "Последняя подкормка 31/11/19",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CardCalendar(
+      title: "Подкормка",
+      image: "assets/vector/vector_feeding.png",
+      events: widget.plant.events,
+      type: EventType.feeding,
     );
   }
 
   Widget _buildTransplantingCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        width: 234,
-        height: 300,
-        child: Card(
-          child: Column(
-            children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 26),
-                    child: Row(children: [
-                      Text(
-                        "Пересадка",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/vector/vector_transplanting.png",
-                        width: 13,
-                        height: 16.9,
-                      ),
-                    ]),
-                  )),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, left: 26.0, right: 31.0),
-                child: Text(
-                  "Летом 1 раз в неделю, Зимой каждые 10 – 15 дней",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 23.0, left: 26.0, right: 110.0),
-                child: Text(
-                  "Последняя пересадка 14/04/18",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CardCalendar(
+      title: "Пересадка",
+      image: "assets/vector/vector_transplanting.png",
+      events: widget.plant.events,
+      type: EventType.transfer,
     );
   }
 
@@ -421,30 +223,29 @@ class _PlantInformationState extends State<PlantInformation> {
       child: Column(
         children: <Widget>[
           _buildSeparator(),
-          ExpandableInfoCard(
-            title: light,
-            info: lightDescription,
+          InfoCard(
+            title: "Возраст",
+            info: widget.plant.age,
           ),
           _buildSeparator(),
-          ExpandableInfoCard(title: humidity, info: humidityDescription),
-          _buildSeparator(),
-          ExpandableInfoCard(title: soil, info: soilDescription),
-          _buildSeparator(),
-          ExpandableInfoCard(title: trim, info: trimDescription),
-          _buildSeparator(),
-          ExpandableInfoCard(
-            title: propagation,
-            info: propagationDescription,
+          InfoCard(
+            title: "Размер/Высота",
+            info: widget.plant.size,
           ),
           _buildSeparator(),
-          ExpandableInfoCard(
-            title: diseasesAndPests,
-            info: diseasesAndPestsDescription,
+          InfoCard(
+            title: "Объем горшка",
+            info: widget.plant.volume,
           ),
           _buildSeparator(),
-          ExpandableInfoCard(
-            title: careProblems,
-            info: careProblemsDescription,
+          InfoCard(
+            title: "Освещение",
+            info: widget.plant.lighting,
+          ),
+          _buildSeparator(),
+          InfoCard(
+            title: "Местоположение",
+            info: widget.plant.placement,
           ),
           _buildSeparator(),
         ],
@@ -454,7 +255,10 @@ class _PlantInformationState extends State<PlantInformation> {
 
   Widget _buildSeparator() {
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0),
+      padding: const EdgeInsets.only(
+        left: 16.0,
+        right: 18,
+      ),
       child: Container(
         width: double.infinity,
         height: 1,

@@ -9,18 +9,22 @@ import 'package:geek_plants/util/time_formatter.dart';
 
 class ExpandableCareCard extends StatefulWidget {
   final String title;
-  final String values;
-  final Function() onDaySelected;
-  final Plant plant;
+  final String plantName;
+  final String photoPath;
+  final int plantId;
+  final Function(List<Event> event) onDaySelected;
+  final List<Event> events;
   final EventType eventType;
 
   ExpandableCareCard({
     Key key,
     this.title,
-    this.values,
     this.onDaySelected,
-    this.plant,
+    this.events,
     this.eventType,
+    this.plantName,
+    this.photoPath,
+    this.plantId,
   }) : super(key: key);
 
   @override
@@ -30,7 +34,6 @@ class ExpandableCareCard extends StatefulWidget {
 }
 
 class ExpandableCareCardState extends State<ExpandableCareCard> {
-  String selectedValue;
   final calendarController = CalendarController();
   var currentDate = 'test';
 
@@ -41,8 +44,13 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
   @override
   void initState() {
     super.initState();
-    selectedValue = widget.values;
-    viewModel = ExpandableCareCardViewModel(widget.plant);
+    viewModel = ExpandableCareCardViewModel(
+      widget.events,
+      widget.eventType,
+      widget.plantName,
+      widget.photoPath,
+      widget.plantId,
+    );
   }
 
   @override
@@ -63,24 +71,12 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
               top: 23,
               bottom: 18,
             ),
-            child: Row(
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black),
-                ),
-                Spacer(),
-                Opacity(
-                  opacity: 0.5,
-                  child: Text(
-                    selectedValue,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ],
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black),
             ),
           ),
           expanded: Container(
@@ -102,7 +98,7 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
                       day,
                       widget.eventType,
                     );
-                    widget.onDaySelected();
+                    widget.onDaySelected(viewModel.events);
                   },
                   calendarType: CalendarType.expand,
                   calendarController: calendarController,

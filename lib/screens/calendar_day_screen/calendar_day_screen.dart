@@ -64,7 +64,9 @@ class _CalendarDayScreenState extends State<CalendarDayScreen> {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
       title: Text(taskListTitle),
       centerTitle: true,

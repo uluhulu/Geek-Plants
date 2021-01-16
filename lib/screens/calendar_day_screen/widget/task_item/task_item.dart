@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
@@ -89,13 +91,23 @@ class TaskItemState extends State<TaskItem> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: AssetImage(widget.event.plantImage,),
-              fit: BoxFit.fill
+              image: loadImage(),
+              fit: BoxFit.fill,
             ),
           ),
         ),
       ),
     );
+  }
+
+  ImageProvider loadImage() {
+    try {
+      return AssetImage(
+        widget.event.plantImage,
+      );
+    } catch (e) {
+      return FileImage(File(widget.event.plantImage));
+    }
   }
 
   Widget _buildPlantEvent() {

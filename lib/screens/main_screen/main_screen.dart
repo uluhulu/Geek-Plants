@@ -10,6 +10,7 @@ import 'package:geek_plants/screens/main_screen/widget/bottom_menu.dart';
 import 'package:geek_plants/screens/main_screen/widget/flexible_calendar.dart';
 import 'package:geek_plants/screens/main_screen/widget/plant_list_header.dart';
 import 'package:geek_plants/screens/main_screen/widget/plants_list.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -78,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          CupertinoPageRoute(builder: (context) => AllPlantsScreen()),
+          CupertinoPageRoute(builder: (context) => PlantChangeInfo()),
         );
       },
     );

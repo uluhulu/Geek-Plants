@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/data/model/plant.dart';
+import 'package:geek_plants/screens/main_screen/main_screen.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_viewmodel.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/cancel_button.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/widget/description_textfield.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_add_photo.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_care.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_characteristics.dart';
@@ -8,10 +12,10 @@ import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_cover/
 import 'package:geek_plants/screens/plant_change_info_screen/widget/plant_name.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/save_button.dart';
 import 'package:geek_plants/screens/plant_change_info_screen/widget/title.dart';
-import 'package:geek_plants/values/pathStrings.dart';
 
 class PlantChangeInfo extends StatefulWidget {
-  Plant plant;
+  final Plant plant;
+
   PlantChangeInfo({@required this.plant});
 
   @override
@@ -19,7 +23,15 @@ class PlantChangeInfo extends StatefulWidget {
 }
 
 class _PlantChangeInfoState extends State<PlantChangeInfo> {
-  Plant plant = new Plant(events: []);
+  PlantChangeInfoViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = PlantChangeInfoViewModel(widget.plant);
+    viewModel.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,18 +50,106 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TitleWidget(
-              name: widget.plant.name,
-              latName: widget.plant.latName,
+              name: viewModel.name,
+              latName: viewModel.latName,
             ),
             _buildSeparator(),
-            PlantCover(photoPath: widget.plant.photoPath),
+            PlantCover(
+              photoPath: viewModel.photoPath,
+              onPhotoSelect: (path) {
+                setState(
+                  () {
+                    viewModel.photoPath = path;
+                  },
+                );
+              },
+            ),
             _buildSeparator(),
-            PlantName(),
-            // PlantAddPhoto(),
-            PlantCharacteristics(),
-            PlantCareCharacteristics(plant: plant),
-            Center(child: SaveButton()),
-            Center(child: CancelButton()),
+            PlantName(
+              plantName: viewModel.name,
+              onChanged: (name) {
+                setState(() {
+                  viewModel.name = name;
+                });
+              },
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            PlantName(
+              plantName: viewModel.latName,
+              onChanged: (name) {
+                setState(() {
+                  viewModel.latName = name;
+                });
+              },
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            DescriptionTextField(
+              description: viewModel.description,
+              onChanged: (descr) {
+                setState(() {
+                  viewModel.description = descr;
+                });
+              },
+            ),
+            PlantCharacteristics(
+              age: viewModel.age,
+              size: viewModel.size,
+              volume: viewModel.volume,
+              lighting: viewModel.lighting,
+              placement: viewModel.placement,
+              onAgeSelect: (age) {
+                setState(() {
+                  viewModel.age = age;
+                });
+              },
+              onSizeSelect: (size) {
+                setState(() {
+                  viewModel.size = size;
+                });
+              },
+              onVolumeSelect: (volume) {
+                setState(() {
+                  viewModel.volume = volume;
+                });
+              },
+              onLightSelect: (light) {
+                setState(() {
+                  viewModel.lighting = light;
+                });
+              },
+              onPlacement: (placement) {
+                setState(() {
+                  viewModel.placement = placement;
+                });
+              },
+            ),
+            PlantCareCharacteristics(
+              events: viewModel.events,
+              plantId: viewModel.plantId,
+              plantName: viewModel.name,
+              photoPath: viewModel.photoPath,
+              onDaySelected: (events) {
+                setState(() {
+                  viewModel.events = events;
+                });
+                print("евенты ${viewModel.events}");
+              },
+            ),
+            Center(
+              child: SaveButton(
+                onPressed: () {
+                  viewModel.saveChanges();
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                    (route) => false,
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
