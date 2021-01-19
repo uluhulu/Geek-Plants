@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:geek_plants/data/model/event_old.dart';
 import 'package:geek_plants/data/model/plant.dart';
 import 'package:geek_plants/di.dart';
@@ -14,7 +15,7 @@ class PlantChangeInfoViewModel {
   var volume = 'Не выбрано';
   var lighting = 'Не выбрано';
   var placement = 'Не выбрано';
-  var photoPath = 'не выбрано';
+  var photoPath = '';
   var description = 'Небольшое описание растения';
 
   List<Event> events = [];
@@ -77,7 +78,7 @@ class PlantChangeInfoViewModel {
       size: size,
       volume: volume,
       lighting: lighting,
-      placement: "юг",
+      placement: placement,
       category: categories[1],
       isSelected: true,
       description: description,

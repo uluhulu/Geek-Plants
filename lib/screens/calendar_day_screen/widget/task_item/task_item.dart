@@ -101,13 +101,15 @@ class TaskItemState extends State<TaskItem> {
   }
 
   ImageProvider loadImage() {
+    ImageProvider image;
     try {
-      return AssetImage(
+      image =  AssetImage(
         widget.event.plantImage,
       );
     } catch (e) {
-      return FileImage(File(widget.event.plantImage));
+      image =  FileImage(File(widget.event.plantImage));
     }
+    return image;
   }
 
   Widget _buildPlantEvent() {

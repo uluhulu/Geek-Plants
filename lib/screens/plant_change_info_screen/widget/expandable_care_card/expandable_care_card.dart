@@ -97,6 +97,7 @@ class ExpandableCareCardState extends State<ExpandableCareCard> {
                     viewModel.handlePlantEvents(
                       day,
                       widget.eventType,
+                      widget.photoPath,
                     );
                     widget.onDaySelected(viewModel.events);
                   },

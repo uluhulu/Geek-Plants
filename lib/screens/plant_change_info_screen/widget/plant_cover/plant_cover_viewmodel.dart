@@ -10,7 +10,7 @@ class PlantCoverViewModel {
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker().getImage(source: source);
-    onPhotoSelect(image.path);
+    onPhotoSelect.call(image.path);
     pickedImageController.add(image);
   }
 }

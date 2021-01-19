@@ -60,6 +60,7 @@ class _PlantChangeInfoState extends State<PlantChangeInfo> {
                 setState(
                   () {
                     viewModel.photoPath = path;
+                    print('путь ${viewModel.photoPath}');
                   },
                 );
               },

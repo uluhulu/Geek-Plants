@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:geek_plants/data/model/event_old.dart';
+import 'package:geek_plants/data/model/plant.dart';
 
 class ExpandableCareCardViewModel {
   final List<Event> events;
@@ -30,7 +31,16 @@ class ExpandableCareCardViewModel {
           List<Event> values = [];
           events.forEach((e) {
             if (event.time == key && event.type == type) {
-              values.add(event);
+              values.add(
+                Event(
+                  id: event.id,
+                  type: event.type,
+                  time: time,
+                  plantId: event.plantId,
+                  plantName: plantName,
+                  plantImage: photoPath,
+                ),
+              );
             }
           });
           eventsMap[key] = values;
@@ -39,7 +49,25 @@ class ExpandableCareCardViewModel {
     plantEvents.add(eventsMap);
   }
 
-  void handlePlantEvents(DateTime day, EventType type) {
+  void updateEvents(String photoPath) {
+    for (int i = 0; i < events.length; i++) {
+      events[i] = Event(
+        plantId: plantId,
+        id: events[i].id,
+        time: events[i].time,
+        type: events[i].type,
+        plantImage: photoPath,
+        plantName: plantName,
+      );
+      print(photoPath);
+    }
+  }
+
+  void handlePlantEvents(
+    DateTime day,
+    EventType type,
+    String photoPath,
+  ) {
     if (events.isNotEmpty) {
       Event plantEvent;
       events.forEach((element) {
@@ -49,18 +77,23 @@ class ExpandableCareCardViewModel {
       });
 
       if (plantEvent == null) {
-        addEvent(type, day);
+        addEvent(type, day, photoPath);
       } else {
         removeEvent(plantEvent, day);
       }
     } else {
-      addEvent(type, day);
+      addEvent(type, day, photoPath);
     }
 
+    updateEvents(photoPath);
     plantEvents.add(eventsMap);
   }
 
-  void addEvent(EventType type, DateTime time) {
+  void addEvent(
+    EventType type,
+    DateTime time,
+    String photoPath,
+  ) {
     final event = Event(
       id: events.length,
       type: type,
@@ -69,6 +102,7 @@ class ExpandableCareCardViewModel {
       plantName: plantName,
       plantImage: photoPath,
     );
+    print(photoPath);
     events.add(event);
     eventsMap[time] = [event];
   }
