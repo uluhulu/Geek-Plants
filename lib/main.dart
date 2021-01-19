@@ -1,5 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geek_plants/screens/all_plants_screen/all_plants_screen.dart';
+import 'package:geek_plants/screens/auth_screen/auth_screen.dart';
+import 'package:geek_plants/screens/calendar_day_screen/calendar_day_screen.dart';
+import 'package:geek_plants/screens/calendar_screen/calendar_screen.dart';
+import 'package:geek_plants/screens/main_screen/main_screen.dart';
+import 'package:geek_plants/screens/plant_change_info_screen/plant_change_info_screen.dart';
+import 'package:geek_plants/screens/plant_information_screen/plant_information_screen.dart';
+import 'package:geek_plants/values/mocks.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,9 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.grey,
       ),
-      home: Scaffold(),
+      // home: MainScreen(),
+      // home: AuthScreen(),
+      // home: PlantInformation(plant: plantList[0],),
+      home: AuthScreen(),
     );
   }
 }
-
-
